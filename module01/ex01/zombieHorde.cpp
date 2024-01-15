@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.cpp                                           :+:    :+:            */
+/*   zombieHorde.cpp                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/01/03 09:31:44 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/12 23:12:46 by mademir       ########   odam.nl         */
+/*   Created: 2024/01/13 22:07:53 by mademir       #+#    #+#                 */
+/*   Updated: 2024/01/14 06:43:26 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Zombie.hpp"
 
-int	main(void)
+Zombie*	zombieHorde(int N, std::string name)
 {
-	PhoneBook book;
-	std::string input;
+	Zombie *arr;
 
-	book.printWelcome();
-	while (input != "EXIT")
-	{
-		std::cout << "command > ";
-		if (!std::getline(std::cin, input))
-			return 1;
-		else if (input == "ADD")
-			book.addContact();
-		else if (input == "SEARCH")
-			book.showContact();
-		else if ((input != "EXIT"))
-			std::cout << "wrong command" << std::endl;
-	}
-	return 0;
+	arr = new Zombie[N];
+	for (static int i = 0; i < N; i++)
+		arr[i].setName(name);
+	return (arr);
 }

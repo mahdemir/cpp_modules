@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.cpp                                           :+:    :+:            */
+/*   Zombie.cpp                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/01/03 09:31:44 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/12 23:12:46 by mademir       ########   odam.nl         */
+/*   Created: 2024/01/13 20:56:57 by mademir       #+#    #+#                 */
+/*   Updated: 2024/01/13 22:09:23 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Zombie.hpp"
 
-int	main(void)
+void	Zombie::announce(void)
 {
-	PhoneBook book;
-	std::string input;
+	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+}
 
-	book.printWelcome();
-	while (input != "EXIT")
-	{
-		std::cout << "command > ";
-		if (!std::getline(std::cin, input))
-			return 1;
-		else if (input == "ADD")
-			book.addContact();
-		else if (input == "SEARCH")
-			book.showContact();
-		else if ((input != "EXIT"))
-			std::cout << "wrong command" << std::endl;
-	}
-	return 0;
+Zombie::Zombie(std::string name)
+{
+	this->name = name;
+}
+
+Zombie::~Zombie()
+{
+	std::cout << name << ": is destroyed" << std::endl;
 }

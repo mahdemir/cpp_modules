@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/03 12:06:40 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/05 07:02:44 by mademir       ########   odam.nl         */
+/*   Updated: 2024/01/12 23:13:40 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,6 @@ std::string	Contact::getInput(std::string const str)
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			return "";
-		}
-		if (input.length() > 20)
-		{
-			std::cout << "use less then 20 letters" << std::endl;
-			continue ;
 		}
 		if (std::cin.good() && !input.empty())
 			break ;

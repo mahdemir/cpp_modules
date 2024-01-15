@@ -5,30 +5,31 @@
 /*                                                     +:+                    */
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/01/03 09:31:44 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/12 23:12:46 by mademir       ########   odam.nl         */
+/*   Created: 2024/01/14 07:29:04 by mademir       #+#    #+#                 */
+/*   Updated: 2024/01/14 08:34:33 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Weapon.hpp"
+#include "HumanA.hpp"
+#include "HumanB.hpp"
 
 int	main(void)
 {
-	PhoneBook book;
-	std::string input;
-
-	book.printWelcome();
-	while (input != "EXIT")
 	{
-		std::cout << "command > ";
-		if (!std::getline(std::cin, input))
-			return 1;
-		else if (input == "ADD")
-			book.addContact();
-		else if (input == "SEARCH")
-			book.showContact();
-		else if ((input != "EXIT"))
-			std::cout << "wrong command" << std::endl;
+		Weapon  club = Weapon("crude spiked club");
+		HumanA bob("Bob", club);
+		bob.attack();
+		club.setType("some other type of club");
+		bob.attack();
+	}
+	{
+		Weapon  club = Weapon("crude spiked club");
+		HumanB jim("Jim");
+		jim.setWeapon(club);
+		jim.attack();
+		club.setType("some other type of club");
+		jim.attack();
 	}
 	return 0;
 }

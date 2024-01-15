@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/03 12:06:50 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/05 07:02:44 by mademir       ########   odam.nl         */
+/*   Updated: 2024/01/12 23:17:01 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	PhoneBook::addContact(void)
 
 	if (i == 8)
 		i = 0;
-	contacts[i % BOOK_SIZE].checkSetData(&i);
-	
+	contacts[i].checkSetData(&i);
 }
 
 int PhoneBook::findContact(void)

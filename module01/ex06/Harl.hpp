@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.cpp                                           :+:    :+:            */
+/*   Harl.hpp                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/01/03 09:31:44 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/12 23:12:46 by mademir       ########   odam.nl         */
+/*   Created: 2024/01/15 11:30:42 by mademir       #+#    #+#                 */
+/*   Updated: 2024/01/15 11:59:09 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#ifndef HARL_HPP
+#define HARL_HPP
 
-int	main(void)
+#include <iostream>
+
+class Harl
 {
-	PhoneBook book;
-	std::string input;
+	private:
+		void	debug(void);
+		void	info(void);
+		void	warning(void);
+		void	error(void);
 
-	book.printWelcome();
-	while (input != "EXIT")
-	{
-		std::cout << "command > ";
-		if (!std::getline(std::cin, input))
-			return 1;
-		else if (input == "ADD")
-			book.addContact();
-		else if (input == "SEARCH")
-			book.showContact();
-		else if ((input != "EXIT"))
-			std::cout << "wrong command" << std::endl;
-	}
-	return 0;
-}
+	public:
+		void	complain(std::string level);
+};
+
+#endif
