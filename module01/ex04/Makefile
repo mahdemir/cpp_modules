@@ -1,3 +1,11 @@
+ifeq ($(shell uname -s), Darwin)
+    # macOS
+	LEAKS_CMD = leaks -atExit --
+else ifeq ($(shell uname -s), Linux)
+    # Linux
+	LEAKS_CMD = valgrind --leak-check=full
+endif
+
 NAME		= sed
 
 CC			= c++
@@ -11,6 +19,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
+
+leaks: $(NAME)
+	$(LEAKS_CMD) ./$(NAME)
 
 clean:
 	$(RM) $(OBJ)

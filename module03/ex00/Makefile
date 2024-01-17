@@ -6,14 +6,14 @@ else ifeq ($(shell uname -s), Linux)
 	LEAKS_CMD = valgrind --leak-check=full
 endif
 
-NAME		= harl
+NAME		= claptrap
 
 CC			= c++
 CPPFLAGS	= -Wall -Wextra -Werror -pedantic -std=c++98
 RM			= rm -rf
 
 SRC			= main.cpp \
-				Harl.cpp
+				ClapTrap.cpp
 OBJ			= $(SRC:.cpp=.o)
 
 all: $(NAME)
