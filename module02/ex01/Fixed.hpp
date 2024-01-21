@@ -6,35 +6,48 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/15 23:27:51 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/16 16:04:07 by mademir       ########   odam.nl         */
+/*   Updated: 2024/01/21 19:52:08 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-#define FIXED_HPP
+/******** DEFINES *************************************************************/
+
+#ifndef INCLUDE_GUARD
+#define INCLUDE_GUARD
+
+/******** INCLUDES ************************************************************/
 
 #include <iostream>
 #include <cmath>
 
+/******** CLASSES *************************************************************/
+
 class Fixed
 {
 private:
-	int					value;
-	static const int	fbits = 8;
+	int					_value;
+	static const int	_fractionalBits = 8;
+
 public:
-	Fixed(void);
+	Fixed();
 	Fixed(const Fixed &toCopy);
+
 	Fixed(const int i);
 	Fixed(const float f);
-	~Fixed(void);
 
-	Fixed				&operator = (const Fixed &toCopy);
-	int					getRawBits(void) const;
-	void				setRawBits(int const raw);
-	float				toFloat(void) const;
-	int					toInt(void) const;
+	~Fixed();
+
+	Fixed& operator=(const Fixed &toCopy);
+
+	int		getRawBits() const;
+	void	setRawBits(int const raw);
+
+	int		toInt() const;
+	float	toFloat() const;
 };
 
-std::ostream	&operator << (std::ostream &output, const Fixed &fixed);
+/******** PROTOTYPE(S) ********************************************************/
 
-#endif
+std::ostream&	operator<<(std::ostream &COUT, const Fixed &fixed);
+
+#endif // INCLUDE_GUARD

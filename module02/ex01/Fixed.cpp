@@ -6,72 +6,84 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/15 23:27:27 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/17 12:05:58 by mademir       ########   odam.nl         */
+/*   Updated: 2024/01/21 19:52:42 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed(void)
-{
-	std::cout << "Default constructor called" <<std::endl;
-	value = 0;
-}
+/******** CONSTRUCTOR(S) ******************************************************/
 
-Fixed::Fixed(const Fixed &toCopy)
-{
-	std::cout << "Copy constructor called" <<std::endl;
-	value = toCopy.getRawBits();
-}
+	Fixed::Fixed()
+	{
+		std::cout << "Default constructor called" << std::endl;
+		_value = 0;
+	}
 
-Fixed::Fixed(const int i)
-{
-	value = i << fbits;
-	std::cout << "Int constructor called" << std::endl;
-}
+	Fixed::Fixed(const Fixed &toCopy)
+	{
+		std::cout << "Copy constructor called" << std::endl;
+		*this = toCopy;
+	}
 
-Fixed::Fixed(const float f)
-{
-	value = (int)roundf(f * (1 << fbits));
-	std::cout << "Float constructor called" << std::endl;
-}
+	Fixed::Fixed(const int i)
+	{
+		std::cout << "Int constructor called" << std::endl;
+		_value = i << _fractionalBits;
+	}
 
-Fixed::~Fixed(void)
-{
-	std::cout << "Destructor called" <<std::endl;
-}
+	Fixed::Fixed(const float f)
+	{
+		std::cout << "Float constructor called" << std::endl;
+		_value = (int)roundf(f * (1 << _fractionalBits));
+	}
 
-int	Fixed::getRawBits(void) const
-{
-	std::cout << "getRawBits member function called" << std::endl;
-	return (value);
-}
+/******** DESTRUCTOR **********************************************************/
 
-void	Fixed::setRawBits(int raw)
-{
-	std::cout << "setRawBits member function called" << std::endl;
-	value = raw;
-}
+	Fixed::~Fixed()
+	{
+		std::cout << "Destructor called" << std::endl;
+	}
 
-Fixed	&Fixed::operator = (const Fixed &toCopy)
-{
-	std::cout << "Copy assignement operator called" <<std::endl;
-	value = toCopy.getRawBits();
-	return (*this);
-}
+/******** OVERLOAD FUNCTION(S) ************************************************/
 
-std::ostream	&operator << (std::ostream &output, const Fixed &fixed)
-{
-	output << fixed.toFloat();
-	return (output);
-}
+	Fixed& Fixed::operator=(const Fixed &toCopy)
+	{
+		std::cout << "Copy assignment operator called" << std::endl;
+		_value = toCopy.getRawBits();
+		return (*this);
+	}
 
-float	Fixed::toFloat(void) const
-{
-	return ((float)value / (float)(1 << fbits));
-}
+	std::ostream&	operator<<(std::ostream &COUT, const Fixed &fixed)
+	{
+		COUT << fixed.toFloat();
+		return (COUT);
+	}
 
-int	Fixed::toInt(void) const
-{
-	return (value >> fbits);
-}
+/******** GETTER(S) ***********************************************************/
+
+	int	Fixed::getRawBits() const
+	{
+		// std::cout << "getRawBits member function called" << std::endl;
+		return (_value);
+	}
+
+/******** SETTER(S) ***********************************************************/
+
+	void Fixed::setRawBits(int const raw)
+	{
+		// std::cout << "setRawBits member function called" << std::endl;
+		_value = raw;
+	}
+
+/******** HELPER(S) ***********************************************************/
+
+	int	Fixed::toInt() const
+	{
+		return (_value >> _fractionalBits);
+	}
+
+	float	Fixed::toFloat() const
+	{
+		return ((float)_value / (float)(1 << _fractionalBits));
+	}

@@ -6,33 +6,35 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/17 12:10:55 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/17 15:01:17 by mademir       ########   odam.nl         */
+/*   Updated: 2024/01/21 19:49:19 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
-Point::Point(void) : x(0), y(0) {}
+/******** CONSTRUCTOR(S) ******************************************************/
 
-Point::Point(const float xValue, const float yValue) : x(xValue), y(yValue) {}
+	Point::Point() : _x(0), _y(0) {}
 
-Point::Point(const Point &toCopy) : x(toCopy.x), y(toCopy.y) {}
+	Point::Point(const float x, const float y) : _x(x), _y(y) {}
 
-Point::~Point(void) {}
+	Point::Point(const Point &toCopy) : _x(toCopy._x), _y(toCopy._y) {}
 
-Point	&Point::operator = (const Point &toCopy)
-{
-	(Fixed)this->x = toCopy.getX();
-	(Fixed)this->y = toCopy.getY();
-	return (*this);
-}
+/******** DESTRUCTOR **********************************************************/
 
-Fixed	Point::getX(void) const
-{
-	return (x);
-}
+	Point::~Point() {}
 
-Fixed	Point::getY(void) const
-{
-	return (y);
-}
+/******** OVERLOAD FUNCTION(S) ************************************************/
+
+	Point&	Point::operator = (const Point &toCopy)
+	{
+		(Fixed)_x = toCopy.getX();
+		(Fixed)_y = toCopy.getY();
+		return (*this);
+	}
+
+/******** GETTER(S) ***********************************************************/
+
+	Fixed	Point::getX() const { return (_x); }
+
+	Fixed	Point::getY() const { return (_y); }

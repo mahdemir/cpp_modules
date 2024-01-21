@@ -6,30 +6,40 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/17 12:09:13 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/17 12:25:49 by mademir       ########   odam.nl         */
+/*   Updated: 2024/01/21 19:52:23 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+/******** DEFINES *************************************************************/
 
 #ifndef POINT_HPP
 #define POINT_HPP
 
+/******** INCLUDES ************************************************************/
+
 #include "Fixed.hpp"
+
+/******** CLASSES *************************************************************/
 
 class Point
 {
 private:
-	const Fixed	x;
-	const Fixed	y;
+	Fixed const	_x;
+	Fixed const	_y;
 
 public:
-	Point(void);
-	Point(const float xValue, const float yValue);
-	Point(const Point &toCopy);
-	Point	&operator = (const Point &toCopy);
-	~Point(void);
+				Point();
+				Point(const float x, const float y);
+				Point(const Point &toCopy);
+				Point&	operator = (const Point &toCopy);
+				~Point();
 
-	Fixed	getX(void) const;
-	Fixed	getY(void) const;
+	Fixed		getX() const;
+	Fixed		getY() const;
 };
 
-#endif
+/******** PROTOTYPE(S) ********************************************************/
+
+bool bsp(Point const a, Point const b, Point const c, Point const point);
+
+#endif // POINT_HPP

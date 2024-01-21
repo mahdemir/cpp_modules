@@ -6,28 +6,37 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/15 23:27:51 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/16 14:34:02 by mademir       ########   odam.nl         */
+/*   Updated: 2024/01/21 19:53:29 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-#define FIXED_HPP
+/******** DEFINES *************************************************************/
+
+#ifndef INCLUDE_GUARD
+#define INCLUDE_GUARD
+
+/******** INCLUDES ************************************************************/
 
 #include <iostream>
+
+/******** CLASSES *************************************************************/
 
 class Fixed
 {
 private:
-	int					value;
-	static const int	fbits = 8;
+	int					_value;
+	static const int	_fractionalBits = 8;
 
 public:
 	Fixed();
 	Fixed(const Fixed &toCopy);
-	Fixed	&operator = (const Fixed &toCopy);
+
 	~Fixed();
+
+	Fixed& operator=(const Fixed &toCopy);
+
 	int		getRawBits() const;
 	void	setRawBits(int const raw);
 };
 
-#endif
+#endif // INCLUDE_GUARD

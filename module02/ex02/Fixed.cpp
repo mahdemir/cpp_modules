@@ -6,169 +6,181 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/15 23:27:27 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/17 14:47:21 by mademir       ########   odam.nl         */
+/*   Updated: 2024/01/21 19:51:23 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-/*********** CONSTRUCTORS *****************************************************/
+/******** CONSTRUCTOR(S) ******************************************************/
 
-Fixed::Fixed(void)
-{
-	value = 0;
-}
+	Fixed::Fixed()
+	{
+		// std::cout << "Default constructor called" << std::endl;
+		_value = 0;
+	}
 
-Fixed::Fixed(const Fixed &toCopy)
-{
-	value = toCopy.getRawBits();
-}
+	Fixed::Fixed(const Fixed &toCopy)
+	{
+		// std::cout << "Copy constructor called" << std::endl;
+		*this = toCopy;
+	}
 
-Fixed::Fixed(const int i)
-{
-	value = i << fbits;
-}
+	Fixed::Fixed(const int i)
+	{
+		// std::cout << "Int constructor called" << std::endl;
+		_value = i << _fractionalBits;
+	}
 
-Fixed::Fixed(const float f)
-{
-	value = (int)roundf(f * (1 << fbits));
-}
+	Fixed::Fixed(const float f)
+	{
+		// std::cout << "Float constructor called" << std::endl;
+		_value = (int)roundf(f * (1 << _fractionalBits));
+	}
 
-/*********** DECONSTRUCTOR ****************************************************/
+/******** DESTRUCTOR **********************************************************/
 
-Fixed::~Fixed(void) {}
+	Fixed::~Fixed()
+	{
+		// std::cout << "Destructor called" << std::endl;
+	}
 
-/*********** OVERLOAD FUNC ****************************************************/
+/******** OVERLOAD FUNCTION(S) ************************************************/
 
-Fixed	&Fixed::operator = (const Fixed &toCopy)
-{
-	value = toCopy.getRawBits();
-	return (*this);
-}
+//copy
+	Fixed& Fixed::operator=(const Fixed &toCopy)
+	{
+		// std::cout << "Copy assignment operator called" << std::endl;
+		_value = toCopy.getRawBits();
+		return (*this);
+	}
+//insertion
+	std::ostream&	operator<<(std::ostream &COUT, const Fixed &fixed)
+	{
+		COUT << fixed.toFloat();
+		return (COUT);
+	}
+//comparison
+	bool	Fixed::operator < (const Fixed &toCompare) const
+	{
+		return (toFloat() < toCompare.toFloat());
+	}
 
-std::ostream	&operator << (std::ostream &output, const Fixed &fixed)
-{
-	output << fixed.toFloat();
-	return (output);
-}
+	bool	Fixed::operator > (const Fixed &toCompare) const
+	{
+		return (toFloat() > toCompare.toFloat());
+	}
 
-bool Fixed::operator == (const Fixed &toCompare) const
-{
-	if (toFloat() == toCompare.toFloat())
-		return (true);
-	return (false);
-}
+	bool	Fixed::operator >= (const Fixed &toCompare) const
+	{
+		return (toFloat() >= toCompare.toFloat());
+	}
 
-bool	Fixed::operator < (const Fixed &toCompare) const
-{
-	if (toFloat() < toCompare.toFloat())
-		return (true);
-	return (false);
-}
+	bool	Fixed::operator <= (const Fixed &toCompare) const
+	{
+		return (toFloat() <= toCompare.toFloat());
+	}
 
-bool	Fixed::operator <= (const Fixed &toCompare) const
-{
-	if (toFloat() < toCompare.toFloat() || toFloat() == toCompare.toFloat())
-		return (true);
-	return (false);
-}
+	bool Fixed::operator == (const Fixed &toCompare) const
+	{
+		return (toFloat() == toCompare.toFloat());
+	}
 
-bool	Fixed::operator > (const Fixed &toCompare) const
-{
-	if (toFloat() <= toCompare.toFloat())
-		return (false);
-	return (true);
-}
+	bool Fixed::operator != (const Fixed &toCompare) const
+	{
+		return (toFloat() != toCompare.toFloat());
+	}
+//arithmetic
+	Fixed	Fixed::operator + (const Fixed &toAdd) const
+	{
+		return (Fixed(toFloat() + toAdd.toFloat()));
+	}
 
-bool	Fixed::operator >= (const Fixed &toCompare) const
-{
-	if (toFloat() < toCompare.toFloat())
-		return (false);
-	return (true);
-}
+	Fixed	Fixed::operator - (const Fixed &toSub) const
+	{
+		return (Fixed(toFloat() - toSub.toFloat()));
+	}
 
-bool Fixed::operator != (const Fixed &toCompare) const
-{
-	if (toFloat() == toCompare.toFloat())
-		return (false);
-	return (true);
-}
+	Fixed	Fixed::operator * (const Fixed &toMult) const
+	{
+		return (Fixed(toFloat() * toMult.toFloat()));
+	}
 
-Fixed	Fixed::operator + (const Fixed &toAdd) const
-{
-	return (Fixed(toFloat() + toAdd.toFloat()));
-}
+	Fixed	Fixed::operator / (const Fixed &toDiv) const
+	{
+		return (Fixed(toFloat() / toDiv.toFloat()));
+	}
+//increment/decrement
+	Fixed&	Fixed::operator ++ ()
+	{
+		setRawBits(getRawBits() + 1);
+		return (*this);
+	}
 
-Fixed	Fixed::operator - (const Fixed &toSub) const
-{
-	return (Fixed(toFloat() - toSub.toFloat()));
-}
+	Fixed&	Fixed::operator -- ()
+	{
+		setRawBits(getRawBits() - 1);
+		return (*this);
+	}
 
-Fixed	Fixed::operator * (const Fixed &toMult) const
-{
-	return (Fixed(toFloat() * toMult.toFloat()));
-}
+	Fixed	Fixed::operator ++ (int)
+	{
+		Fixed tmp = *this;
+		setRawBits(getRawBits() + 1);
+		return (tmp);
+	}
 
-Fixed	Fixed::operator / (const Fixed &toDiv) const
-{
-	return (Fixed(toFloat() / toDiv.toFloat()));
-}
+	Fixed	Fixed::operator -- (int)
+	{
+		Fixed tmp = *this;
+		setRawBits(getRawBits() - 1);
+		return (tmp);
+	}
+//min/max
+	Fixed	&Fixed::min(Fixed &a, Fixed &b)
+	{
+		return (a < b ? a : b);
+	}
 
-Fixed	&Fixed::operator ++ (void)
-{
-	setRawBits(getRawBits() + 1);
-	return (*this);
-}
+	const Fixed	&Fixed::min(const Fixed &a, const Fixed &b)
+	{
+		return (a < b ? a : b);
+	}
 
-Fixed	&Fixed::operator -- (void)
-{
-	setRawBits(getRawBits() - 1);
-	return (*this);
-}
+	Fixed	&Fixed::max(Fixed &a, Fixed &b)
+	{
+		return (a > b ? a : b);
+	}
 
-Fixed	Fixed::operator ++ (int)
-{
-	Fixed tmp = *this;
-	setRawBits(getRawBits() + 1);
-	return (tmp);
-}
+	const Fixed	&Fixed::max(const Fixed &a, const Fixed &b)
+	{
+		return (a > b ? a : b);
+	}
 
-Fixed	Fixed::operator -- (int)
-{
-	Fixed tmp = *this;
-	setRawBits(getRawBits() - 1);
-	return (tmp);
-}
+/******** GETTER(S) ***********************************************************/
 
-/*********** MIN / MAX FUNCTIONS **********************************************/
+	int	Fixed::getRawBits() const
+	{
+		// std::cout << "getRawBits member function called" << std::endl;
+		return (_value);
+	}
 
-Fixed	&Fixed::min(Fixed &a, Fixed &b) { return (a < b ? a : b); }
+/******** SETTER(S) ***********************************************************/
 
-const Fixed	&Fixed::min(const Fixed &a, const Fixed &b) { return (a < b ? a : b); }
+	void Fixed::setRawBits(int const raw)
+	{
+		// std::cout << "setRawBits member function called" << std::endl;
+		_value = raw;
+	}
 
-Fixed	&Fixed::max(Fixed &a, Fixed &b) { return (a > b ? a : b); }
+/******** HELPER(S) ***********************************************************/
 
-const Fixed	&Fixed::max(const Fixed &a, const Fixed &b) { return (a > b ? a : b); }
+	int	Fixed::toInt() const
+	{
+		return (_value >> _fractionalBits);
+	}
 
-
-/*********** HELPERS **********************************************************/
-
-int	Fixed::getRawBits(void) const
-{
-	return (value);
-}
-
-void	Fixed::setRawBits(int raw)
-{
-	value = raw;
-}
-
-int	Fixed::toInt(void) const
-{
-	return (value >> fbits);
-}
-
-float	Fixed::toFloat(void) const
-{
-	return ((float)value / (float)(1 << fbits));
-}
+	float	Fixed::toFloat() const
+	{
+		return ((float)_value / (float)(1 << _fractionalBits));
+	}

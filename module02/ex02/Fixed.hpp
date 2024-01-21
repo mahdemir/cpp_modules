@@ -6,56 +6,71 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/15 23:27:51 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/17 11:41:08 by mademir       ########   odam.nl         */
+/*   Updated: 2024/01/21 19:51:08 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-#define FIXED_HPP
+/******** DEFINES *************************************************************/
+
+#ifndef INCLUDE_GUARD
+#define INCLUDE_GUARD
+
+/******** INCLUDES ************************************************************/
 
 #include <iostream>
 #include <cmath>
 
+/******** CLASSES *************************************************************/
+
 class Fixed
 {
 private:
-	int					value;
-	static const int	fbits = 8;
+	int					_value;
+	static const int	_fractionalBits = 8;
 
 public:
-	Fixed(void);
-	Fixed(const Fixed &toCopy);
-	Fixed(const int i);
-	Fixed(const float f);
-	~Fixed(void);
-
-	Fixed				&operator = (const Fixed &toCopy);
-	bool				operator == (const Fixed &toCompare) const;
-	bool				operator < (const Fixed &toCompare) const;
-	bool				operator <= (const Fixed &toCompare) const;
+//constructor
+						Fixed();
+						Fixed(const Fixed &toCopy);
+						Fixed(const int i);
+						Fixed(const float f);
+//destructor
+						~Fixed();
+//copy
+	Fixed&				operator = (const Fixed &toCopy);
+//comparison
 	bool				operator > (const Fixed &toCompare) const;
+	bool				operator < (const Fixed &toCompare) const;
 	bool				operator >= (const Fixed &toCompare) const;
+	bool				operator <= (const Fixed &toCompare) const;
+	bool				operator == (const Fixed &toCompare) const;
 	bool				operator != (const Fixed &toCompare) const;
+//arithmetic
 	Fixed				operator + (const Fixed &toAdd) const;
 	Fixed				operator - (const Fixed &toSub) const;
 	Fixed				operator * (const Fixed &toMult) const;
 	Fixed				operator / (const Fixed &toDiv) const;
-	Fixed				&operator ++ (void);
+//increment/decrement
+	Fixed				&operator ++ ();
 	Fixed				operator ++ (int);
-	Fixed				&operator -- (void);
+	Fixed				&operator -- ();
 	Fixed				operator -- (int);
-
+//min/max
 	static Fixed		&min(Fixed &a, Fixed &b);
 	static const Fixed	&min(const Fixed &a, const Fixed &b);
 	static Fixed		&max(Fixed &a, Fixed &b);
 	static const Fixed	&max(const Fixed &a, const Fixed &b);
-
-	int					getRawBits(void) const;
+//getter/setter
+	int					getRawBits() const;
 	void				setRawBits(int const raw);
-	float				toFloat(void) const;
-	int					toInt(void) const;
+//helpers
+	int					toInt() const;
+	float				toFloat() const;
 };
 
-std::ostream	&operator << (std::ostream &output, const Fixed &fixed);
+/******** PROTOTYPE(S) ********************************************************/
 
-#endif
+//insertion
+	std::ostream&	operator<<(std::ostream &COUT, const Fixed &fixed);
+
+#endif // INCLUDE_GUARD
