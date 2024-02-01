@@ -1,21 +1,27 @@
 /******** DEFINES *************************************************************/
-#ifndef INCLUDE_GUARD
-#define INCLUDE_GUARD
+#ifndef SCAVTRAP_HPP
+#define SCAVTRAP_HPP
 
 /******** INCLUDES ************************************************************/
 
-	// code
-
-/******** STRUCTS *************************************************************/
-
-	// code
+#include "ClapTrap.hpp"
+#include <iostream>
 
 /******** CLASSES *************************************************************/
 
-	// code
+class ScavTrap : public ClapTrap
+{
+private:
 
-/******** PROTOTYPE(S) ********************************************************/
+public:
+	ScavTrap(void);
+	ScavTrap(std::string str);
+	ScavTrap(const ScavTrap &toCopy);
+	ScavTrap	&operator = (const ScavTrap &toCopy);
+	~ScavTrap(void);
 
-	// code
+	void		attack(std::string target);
+	void		guardGate(void);
+};
 
-#endif // INCLUDE_GUARD
+#endif // SCAVTRAP_HPP

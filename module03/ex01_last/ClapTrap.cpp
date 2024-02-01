@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ClapTrap.cpp                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mademir <mademir@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/17 14:46:39 by mademir       #+#    #+#                 */
+/*   Updated: 2024/02/01 17:29:24 by mademir       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ClapTrap.hpp"
 
 /******** CONSTRUCTOR(S) ******************************************************/
@@ -48,11 +60,47 @@
 
 /******** GETTER(S) ***********************************************************/
 
-	// code
+	std::string		ClapTrap::getName()
+	{
+		return (_name);
+	}
+
+	unsigned int	ClapTrap::getHitPoints()
+	{
+		return (_hitPoints);
+	}
+
+	unsigned int 	ClapTrap::getEnergyPoints()
+	{
+		return (_energyPoints);
+	}
+
+	unsigned int	ClapTrap::getAttackDamage()
+	{
+		return (_attackDamage);
+	}
 
 /******** SETTER(S) ***********************************************************/
 
-	// code
+	void	ClapTrap::setName(std::string name)
+	{
+		_name = name;
+	}
+
+	void	ClapTrap::setHitPoints(unsigned int amount)
+	{
+		_hitPoints = amount;
+	}
+
+	void	ClapTrap::setEnergyPoints(unsigned int amount)
+	{
+		_energyPoints = amount;
+	}
+
+	void	ClapTrap::setAttackDamage(unsigned int amount)
+	{
+		_attackDamage = amount;
+	}
 
 /******** HELPER(S) ***********************************************************/
 
@@ -82,6 +130,7 @@
 		if (checkHitPoints() && checkEneryPoints())
 		{
 			_energyPoints--;
+			_hitPoints += amount;
 			std::cout << "ClapTrap " << _name << " heals " << amount << " hit points !" << std::endl;
 		}
 	}
