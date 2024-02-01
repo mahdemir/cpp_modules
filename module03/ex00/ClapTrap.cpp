@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/17 14:46:39 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/17 15:55:42 by mademir       ########   odam.nl         */
+/*   Updated: 2024/01/31 16:56:15 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,13 @@ ClapTrap::~ClapTrap()
 
 ClapTrap	&ClapTrap::operator = (const ClapTrap &toCopy)
 {
-	this->ad = toCopy.ad;
-	this->hp = toCopy.hp;
-	this->ep = toCopy.ep;
-	this->name = toCopy.name;
+	if (this != &toCopy)
+	{
+		this->ad = toCopy.ad;
+		this->hp = toCopy.hp;
+		this->ep = toCopy.ep;
+		this->name = toCopy.name;
+	}
 	std::cout << "Copy assignement operator called" << std::endl;
 	return (*this);
 }
