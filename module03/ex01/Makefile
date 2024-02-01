@@ -9,7 +9,7 @@ endif
 NAME		= scavtrap
 
 CC			= c++
-CPPFLAGS	= -Wall -Wextra -Werror -pedantic -std=c++98
+CPPFLAGS	= -Wall -Wextra -Werror -pedantic
 RM			= rm -rf
 
 SRC			= main.cpp \

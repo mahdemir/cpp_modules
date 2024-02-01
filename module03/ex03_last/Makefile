@@ -6,15 +6,16 @@ else ifeq ($(shell uname -s), Linux)
 	LEAKS_CMD = valgrind --leak-check=full
 endif
 
-NAME		= scavtrap
+NAME		= fragtrap
 
 CC			= c++
-CPPFLAGS	= -Wall -Wextra -Werror -pedantic -std=c++98
+CPPFLAGS	= -Wall -Wextra -Werror -pedantic
 RM			= rm -rf
 
 SRC			= main.cpp \
 				ClapTrap.cpp \
-				ScavTrap.cpp
+				ScavTrap.cpp \
+				FragTrap.cpp
 OBJ			= $(SRC:.cpp=.o)
 
 all: $(NAME)

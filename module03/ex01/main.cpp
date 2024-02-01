@@ -6,28 +6,29 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/17 14:52:28 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/17 23:34:22 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/01 17:32:40 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "ClapTrap.hpp"
 
-int main(void)
+int	main(void)
 {
-	ScavTrap	st1("Jane");
+	ClapTrap	ct1("Jane");
+	ClapTrap	ct2("Johny");
 
-	std::cout << "Hit Points:\t" << st1.getHp() << std::endl;
-	std::cout << "Energy Points:\t"<< st1.getEp() << std::endl;
-	std::cout << "Attack Damage:\t" << st1.getAd() << std::endl;
-	
-	st1.attack("enemy");
-	st1.takeDamage(20);
-
-	std::cout << "Hit Points:\t" << st1.getHp() << std::endl;
-	std::cout << "Energy Points:\t"<< st1.getEp() << std::endl;
-	std::cout << "Attack Damage:\t" << st1.getAd() << std::endl;
-
-	st1.guardGate();
+	ct1.attack("enemy");
+	ct2.beRepaired(10);
+	std::cout << "Hit points Johny: " << ct2.getHitPoints() << std::endl;
+	std::cout << "Energy points Johny: " << ct2.getEnergyPoints() << std::endl;
+	ct2.takeDamage(19);
+	std::cout << "Hit points Johny: " << ct2.getHitPoints() << std::endl;
+	std::cout << "Energy points Johny: " << ct2.getEnergyPoints() << std::endl;
+	ct2.takeDamage(1);
+	std::cout << "Hit points Johny: " << ct2.getHitPoints() << std::endl;
+	std::cout << "Energy points Johny: " << ct2.getEnergyPoints() << std::endl;
+	ct2.attack("enemy");
+	ct2.takeDamage(1000);
 
 	return 0;
 }

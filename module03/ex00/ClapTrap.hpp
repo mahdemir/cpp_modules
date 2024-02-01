@@ -6,11 +6,12 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/17 14:45:42 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/01 12:25:45 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/01 23:47:58 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 /******** DEFINES *************************************************************/
+
 #ifndef CLAPTRAP_HPP
 #define CLAPTRAP_HPP
 

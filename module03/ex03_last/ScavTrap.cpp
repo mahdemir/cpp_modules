@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ScavTrap.cpp                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mademir <mademir@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/17 15:57:11 by mademir       #+#    #+#                 */
+/*   Updated: 2024/02/01 23:58:58 by mademir       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScavTrap.hpp"
 
 /******** CONSTRUCTOR(S) ******************************************************/
 
-	ScavTrap::ScavTrap(void) : ClapTrap()
+	ScavTrap::ScavTrap() : ClapTrap()
 	{
 		std::cout << "ScavTrap default constructor called" << std::endl;
 		setHitPoints(100);
@@ -25,14 +37,14 @@
 
 /******** DESTRUCTOR **********************************************************/
 
-	ScavTrap::~ScavTrap(void)
+	ScavTrap::~ScavTrap()
 	{
 		std::cout << "ScavTrap destuctor called" << std::endl;
 	}
 
 /******** OVERLOAD FUNCTION(S) ************************************************/
 
-	ScavTrap	&ScavTrap::operator = (const ScavTrap &toCopy)
+	ScavTrap&	ScavTrap::operator = (const ScavTrap &toCopy)
 	{
 		(*this).ClapTrap::operator = (toCopy);
 		return (*this);
@@ -40,22 +52,16 @@
 
 /******** HELPER(S) ***********************************************************/
 
-	void	ScavTrap::guardGate(void)
+	void	ScavTrap::guardGate()
 	{
 		std::cout << "ScavTrap " << getName() << " is now in Gate keeper mode" << std::endl;
 	}
 
-	void	ScavTrap::attack(std::string target)
+	void	ScavTrap::attack(const std::string &target)
 	{
-		if (!checkHitPoints())
-		{
-			std::cout << "ScavTrap " << getName() << " cant't attack." << std::endl;
-			return ;
-		}
-		if (checkEneryPoints())
+		if (checkHitPoints() && checkEneryPoints())
 		{
 			setEnergyPoints(getEnergyPoints() - 1);
 			std::cout << "ScavTrap " << getName() << " attacks " << target << ", causing " << getAttackDamage() << " points of damage !" << std::endl;
 		}
-		return ;
 	}
