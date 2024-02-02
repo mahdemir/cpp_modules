@@ -6,53 +6,54 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/17 23:50:15 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/18 00:29:20 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/02 13:09:14 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-/*********** CONSTRUCTORS *****************************************************/
+/******** CONSTRUCTOR(S) ******************************************************/
 
-FragTrap::FragTrap(void) : ClapTrap()
-{
-	std::cout << "FragTrap default constructor called" << std::endl;
-	setHp(100);
-	setEp(30);
-	setAd(100);
-}
+	FragTrap::FragTrap() : ClapTrap()
+	{
+		std::cout << "FragTrap default constructor called" << std::endl;
+		setHitPoints(100);
+		setEnergyPoints(100);
+		setAttackDamage(30);
+	}
 
-FragTrap::FragTrap(std::string str) : ClapTrap(str)
-{
-	std::cout << "FragTrap constructor called" << std::endl;
-	setHp(100);
-	setEp(30);
-	setAd(100);
-}
+	FragTrap::FragTrap(std::string str) : ClapTrap(str)
+	{
+		std::cout << "FragTrap parameterized constructor called" << std::endl;
+		setHitPoints(100);
+		setEnergyPoints(100);
+		setAttackDamage(30);
+	}
 
-FragTrap::FragTrap(const FragTrap &toCopy) : ClapTrap(toCopy)
-{
-	std::cout << "FragTrap copy constructor called" << std::endl;
-}
+	FragTrap::FragTrap(const FragTrap &toCopy) : ClapTrap(toCopy)
+	{
+		std::cout << "FragTrap copy constructor called" << std::endl;
+	}
 
-/*********** DECONSTRUCTOR ****************************************************/
+/******** DESTRUCTOR **********************************************************/
 
-FragTrap::~FragTrap(void)
-{
-	std::cout << "FragTrap destuctor called" << std::endl;
-}
+	FragTrap::~FragTrap()
+	{
+		std::cout << "FragTrap destuctor called" << std::endl;
+	}
 
-/*********** OVERLOAD FUNC ****************************************************/
+/******** OVERLOAD FUNCTION(S) ************************************************/
 
-FragTrap	&FragTrap::operator = (const FragTrap &toCopy)
-{
-	(*this).ClapTrap::operator=(toCopy);
-	return (*this);
-}
+	FragTrap&	FragTrap::operator = (const FragTrap &toCopy)
+	{
+		if (this != &toCopy)
+			(*this).ClapTrap::operator = (toCopy);
+		return (*this);
+	}
 
-/*********** HELPERS **********************************************************/
+/******** HELPER(S) ***********************************************************/
 
-void	FragTrap::highFivesGuys(void)
-{
-	std::cout << "High Five request" << std::endl;
-}
+	void	FragTrap::highFivesGuys()
+	{
+		std::cout << "High Five request" << std::endl;
+	}

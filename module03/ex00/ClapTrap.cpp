@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/17 14:46:39 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/01 17:29:24 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/02 15:17:52 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 	ClapTrap::ClapTrap()
 	{
 		std::cout << "Default constructor called" << std::endl;
+		_name = "Default";
 		_hitPoints = 10;
 		_energyPoints = 10;
 		_attackDamage = 0;

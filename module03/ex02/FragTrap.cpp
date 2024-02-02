@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/17 23:50:15 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/02 00:00:58 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/02 13:10:59 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@
 
 	FragTrap&	FragTrap::operator = (const FragTrap &toCopy)
 	{
-		(*this).ClapTrap::operator = (toCopy);
+		if (this != &toCopy)
+			(*this).ClapTrap::operator = (toCopy);
 		return (*this);
 	}
 

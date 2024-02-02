@@ -6,27 +6,35 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/17 23:50:24 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/18 00:29:22 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/02 15:48:37 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+/******** DEFINES *************************************************************/
 
 #ifndef FRAGTRAP_HPP
 #define FRAGTRAP_HPP
 
+/******** INCLUDES ************************************************************/
+
 #include <iostream>
 #include "ClapTrap.hpp"
 
+/******** CLASSES *************************************************************/
+
 class FragTrap : public virtual ClapTrap
 {
-private:
-
+protected:
+	const unsigned int	_attackDamage = 30;
 public:
-	FragTrap(void);
+	FragTrap();
 	FragTrap(std::string str);
 	FragTrap(const FragTrap &toCopy);
-	FragTrap	&operator = (const FragTrap &toCopy);
-	~FragTrap(void);
-	void		highFivesGuys(void);
+	~FragTrap();
+
+	FragTrap&	operator = (const FragTrap &toCopy);
+
+	void		highFivesGuys();
 };
 
-#endif
+#endif // FRAGTRAP_HPP

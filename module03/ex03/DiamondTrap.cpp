@@ -6,47 +6,57 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/18 00:05:38 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/18 00:29:16 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/02 15:49:03 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() : ClapTrap(), FragTrap(), ScavTrap()
-{
-	setHp(FragTrap::getHp());
-	setEp(ScavTrap::getEp());
-	setAd(FragTrap::getAd());
-	std::cout << "DiamondTrap default constructor called" << std::endl;
-}
+/******** CONSTRUCTOR(S) ******************************************************/
 
-DiamondTrap	&DiamondTrap::operator = (const DiamondTrap &toCopy)
-{
-	(*this).ScavTrap::operator=(toCopy);
-	return (*this);
-}
+	DiamondTrap::DiamondTrap() : ClapTrap(), FragTrap(), ScavTrap()
+	{
+		std::cout << "DiamondTrap default constructor called" << std::endl;
+		setHitPoints(FragTrap::getHitPoints());
+		setEnergyPoints(ScavTrap::getEnergyPoints());
+		setAttackDamage(FragTrap::_attackDamage);
+	}
 
-DiamondTrap::DiamondTrap(const DiamondTrap &toCopy)
-{
-	(*this) = toCopy;
-}
+	DiamondTrap::DiamondTrap(std::string n) : ClapTrap(n), FragTrap(n), ScavTrap(n)
+	{
+		std::cout << "DiamondTrap parameterized constructor called" << std::endl;
+		_name = n;
+		ClapTrap::_name = n + "_clap_name";
+		setHitPoints(FragTrap::getHitPoints());
+		setEnergyPoints(ScavTrap::getEnergyPoints());
+		setAttackDamage(FragTrap::_attackDamage);
+	}
 
-DiamondTrap::DiamondTrap(std::string n) : ClapTrap(n), FragTrap(n), ScavTrap(n)
-{
-	_name = n;
-	ClapTrap::name = n + "_clap_trap";
-	setHp(FragTrap::getHp());
-	setEp(ScavTrap::getEp());
-	setAd(FragTrap::getAd());
-	std::cout << "DiamondTrap constructor called" << std::endl;
-}
+	DiamondTrap::DiamondTrap(const DiamondTrap &toCopy) : ClapTrap(toCopy), FragTrap(toCopy), ScavTrap(toCopy)
+	{
+		std::cout << "DiamondTrap copy constructor called" << std::endl;
+		(*this) = toCopy;
+	}
 
-DiamondTrap::~DiamondTrap(void)
-{
-	std::cout << "DiamondTrap destructor called" << std::endl;
-}
+/******** DESTRUCTOR **********************************************************/
 
-void	DiamondTrap::whoAmI(void)
-{
-	std::cout << "DT name : " << _name << " CT name : " << name << std::endl;
-}
+	DiamondTrap::~DiamondTrap(void)
+	{
+		std::cout << "DiamondTrap destructor called" << std::endl;
+	}
+
+/******** OVERLOAD FUNCTION(S) ************************************************/
+
+	DiamondTrap&	DiamondTrap::operator = (const DiamondTrap &toCopy)
+	{
+		if (this != &toCopy)
+			(*this).ScavTrap::operator=(toCopy);
+		return (*this);
+	}
+
+/******** HELPER(S) ***********************************************************/
+
+	void	DiamondTrap::whoAmI(void)
+	{
+		std::cout << "DT name : " << _name << std::endl <<"CT name : " << ClapTrap::_name << std::endl;
+	}

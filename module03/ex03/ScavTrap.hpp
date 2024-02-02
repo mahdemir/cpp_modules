@@ -6,29 +6,36 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/17 15:57:00 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/18 00:29:29 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/02 12:27:19 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+/******** DEFINES *************************************************************/
 
 #ifndef SCAVTRAP_HPP
 #define SCAVTRAP_HPP
 
+/******** INCLUDES ************************************************************/
+
 #include "ClapTrap.hpp"
 #include <iostream>
+
+/******** CLASSES *************************************************************/
 
 class ScavTrap : public virtual ClapTrap
 {
 private:
 
 public:
-	ScavTrap(void);
+	ScavTrap();
 	ScavTrap(std::string str);
 	ScavTrap(const ScavTrap &toCopy);
-	ScavTrap	&operator = (const ScavTrap &toCopy);
-	~ScavTrap(void);
+	~ScavTrap();
 
-	void		attack(std::string target);
-	void		guardGate(void);
+	ScavTrap	&operator = (const ScavTrap &toCopy);
+
+	void		attack(const std::string &target);
+	void		guardGate();
 };
 
-#endif
+#endif // SCAVTRAP_HPP

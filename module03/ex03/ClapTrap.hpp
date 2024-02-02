@@ -6,44 +6,53 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/17 14:45:42 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/18 00:29:14 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/02 14:46:18 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+/******** DEFINES *************************************************************/
 
 #ifndef CLAPTRAP_HPP
 #define CLAPTRAP_HPP
 
-#include <iostream>
+/******** INCLUDES ************************************************************/
+
+	#include <iostream>
+
+/******** CLASSES *************************************************************/
 
 class ClapTrap
 {
 protected:
-	std::string	name;
-	int			hp;
-	int			ep;
-	int			ad;
+	std::string		_name;
+	unsigned int	_hitPoints;
+	unsigned int	_energyPoints;
+	unsigned int	_attackDamage;
 
 public:
 	ClapTrap();
-	ClapTrap(std::string str);
+	ClapTrap(std::string name);
 	ClapTrap(const ClapTrap &toCopy);
-	ClapTrap	&operator = (const ClapTrap &toCopy);
 	~ClapTrap();
 
-	void		setHp(int points);
-	void		setEp(int points);
-	void		setAd(int points);
-	void		setName(std::string str);
-	int			getHp(void);
-	int			getEp(void);
-	int			getAd(void);
-	std::string	getName(void);
+	ClapTrap&		operator = (const ClapTrap &toCopy);
 
-	void		attack(const std::string& target);
-	void		takeDamage(unsigned int amount);
-	void		beRepaired(unsigned int amount);
-	bool		hasEnergy();
-	bool		isDead();
+	void			attack(const std::string &target);
+	void			takeDamage(unsigned int amount);
+	void			beRepaired(unsigned int amount);
+
+	int				checkHitPoints();
+	int				checkEneryPoints();
+
+	std::string		getName();
+	unsigned int	getHitPoints();
+	unsigned int	getEnergyPoints();
+	unsigned int	getAttackDamage();
+
+	void			setName(std::string name);
+	void			setHitPoints(unsigned int amount);
+	void			setEnergyPoints(unsigned int amount);
+	void			setAttackDamage(unsigned int amount);
 };
 
-#endif
+#endif // CLAPTRAP_HPP

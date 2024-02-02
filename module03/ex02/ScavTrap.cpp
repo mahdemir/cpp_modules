@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/17 15:57:11 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/01 23:58:58 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/02 13:09:53 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@
 
 	ScavTrap&	ScavTrap::operator = (const ScavTrap &toCopy)
 	{
-		(*this).ClapTrap::operator = (toCopy);
+		if (this != &toCopy)
+			(*this).ClapTrap::operator = (toCopy);
 		return (*this);
 	}
 

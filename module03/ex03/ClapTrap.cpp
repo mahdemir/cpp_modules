@@ -6,150 +6,148 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/17 14:46:39 by mademir       #+#    #+#                 */
-/*   Updated: 2024/01/18 00:29:11 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/02 15:18:35 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-/*********** CONSTRUCTORS *****************************************************/
+/******** CONSTRUCTOR(S) ******************************************************/
 
-ClapTrap::ClapTrap()
-{
-	hp = 10;
-	ep = 10;
-	ad = 0;
-	std::cout << "Default constructor called" << std::endl;
-}
-
-ClapTrap::ClapTrap(std::string str)
-{
-	hp = 10;
-	ep = 10;
-	ad = 0;
-	std::cout << "Constructor called" << std::endl;
-	name = str;
-}
-
-ClapTrap::ClapTrap(const ClapTrap &toCopy)
-{
-	*this = toCopy;
-	std::cout << "Copy constructor called" << std::endl;
-}
-
-/*********** DECONSTRUCTOR ****************************************************/
-
-ClapTrap::~ClapTrap()
-{
-	std::cout << "Default destructor called" << std::endl;
-}
-
-/*********** OVERLOAD FUNC ****************************************************/
-
-ClapTrap	&ClapTrap::operator = (const ClapTrap &toCopy)
-{
-	this->ad = toCopy.ad;
-	this->hp = toCopy.hp;
-	this->ep = toCopy.ep;
-	this->name = toCopy.name;
-	std::cout << "Copy assignement operator called" << std::endl;
-	return (*this);
-}
-
-/*********** HELPERS **********************************************************/
-
-void	ClapTrap::setHp(int points)
-{
-	hp = points;
-}
-
-void	ClapTrap::setEp(int points)
-{
-	ep = points;
-}
-
-void	ClapTrap::setAd(int points)
-{
-	ad = points;
-}
-
-void	ClapTrap::setName(std::string str)
-{
-	name = str;
-}
-
-int	ClapTrap::getHp(void)
-{
-	return (hp);
-}
-
-int	ClapTrap::getEp(void)
-{
-	return (ep);
-}
-
-int	ClapTrap::getAd(void)
-{
-	return (ad);
-}
-
-std::string	ClapTrap::getName(void)
-{
-	return (name);
-}
-
-/*********** ACTIONS **********************************************************/
-
-void	ClapTrap::attack(const std::string &target)
-{
-	if (isDead())
+	ClapTrap::ClapTrap()
 	{
-		std::cout << "ClapTrap " << name << " cant't attack" << std::endl;
-		return ;
+		std::cout << "Default constructor called" << std::endl;
+		_name = "Default";
+		_hitPoints = 10;
+		_energyPoints = 10;
+		_attackDamage = 0;
 	}
-	if (!hasEnergy())
-		return ;
-	ep--;
-	std::cout << "ClapTrap " << name << " attacks " << target << ", causing " << ad << " points of damage !" << std::endl;
-}
 
-void	ClapTrap::takeDamage(unsigned int amount)
-{
-	if (isDead())
+	ClapTrap::ClapTrap(std::string name)
 	{
-		std::cout << "ClapTrap " << name << " is already dead" << std::endl;
-		return ;
+		std::cout << "Parameterized constructor called" << std::endl;
+		_name = name;
+		_hitPoints = 10;
+		_energyPoints = 10;
+		_attackDamage = 0;
 	}
-	std::cout << "ClapTrap " << name << " takes " << amount << " damage !" << std::endl;
-	hp -= amount;
-	if (isDead())
-		std::cout << "ClapTrap " << name << " died !" << std::endl;
-}
 
-void	ClapTrap::beRepaired(unsigned int amount)
-{
-	if (isDead())
-		return ;
-	if (!hasEnergy())
-		return ;
-	ep--;
-	hp += amount;
-	std::cout << "ClapTrap " << name << " heals " << amount << " hit points !" << std::endl;
-}
-
-bool	ClapTrap::hasEnergy()
-{
-	if (ep <= 0)
+	ClapTrap::ClapTrap(const ClapTrap &toCopy)
 	{
-		std::cout << "ClapTrap " << name << " has no energy !" << std::endl;
-		return (false);
+		std::cout << "Copy constructor called" << std::endl;
+		*this = toCopy;
 	}
-	return (true);
-}
 
-bool	ClapTrap::isDead()
-{
-	if (hp <= 0)
-		return (true);
-	return (false);
-}
+/******** DESTRUCTOR **********************************************************/
+
+	ClapTrap::~ClapTrap()
+	{
+		std::cout << "Destructor called" << std::endl;
+	}
+
+/******** OVERLOAD FUNCTION(S) ************************************************/
+
+	ClapTrap&	ClapTrap::operator = (const ClapTrap &toCopy)
+	{
+		if (this != &toCopy)
+		{
+			_name = toCopy._name;
+			_hitPoints = toCopy._hitPoints;
+			_energyPoints = toCopy._energyPoints;
+			_attackDamage = toCopy._attackDamage;
+		}
+		return (*this);
+	}
+
+/******** GETTER(S) ***********************************************************/
+
+	std::string		ClapTrap::getName()
+	{
+		return (_name);
+	}
+
+	unsigned int	ClapTrap::getHitPoints()
+	{
+		return (_hitPoints);
+	}
+
+	unsigned int 	ClapTrap::getEnergyPoints()
+	{
+		return (_energyPoints);
+	}
+
+	unsigned int	ClapTrap::getAttackDamage()
+	{
+		return (_attackDamage);
+	}
+
+/******** SETTER(S) ***********************************************************/
+
+	void	ClapTrap::setName(std::string name)
+	{
+		_name = name;
+	}
+
+	void	ClapTrap::setHitPoints(unsigned int amount)
+	{
+		_hitPoints = amount;
+	}
+
+	void	ClapTrap::setEnergyPoints(unsigned int amount)
+	{
+		_energyPoints = amount;
+	}
+
+	void	ClapTrap::setAttackDamage(unsigned int amount)
+	{
+		_attackDamage = amount;
+	}
+
+/******** HELPER(S) ***********************************************************/
+
+	void	ClapTrap::attack(const std::string &target)
+	{
+		if (checkHitPoints() && checkEneryPoints())
+		{
+			_energyPoints--;
+			std::cout << "ClapTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+		}
+	}
+
+	void	ClapTrap::takeDamage(unsigned int amount)
+	{
+		if (checkHitPoints() && checkEneryPoints())
+		{
+			if (amount >= _hitPoints)
+				_hitPoints = 0;
+			else
+				_hitPoints -= amount;
+			std::cout << "ClapTrap " << _name << " takes " << amount << " damage !" << std::endl;
+		}
+	}
+
+	void	ClapTrap::beRepaired(unsigned int amount)
+	{
+		if (checkHitPoints() && checkEneryPoints())
+		{
+			_energyPoints--;
+			_hitPoints += amount;
+			std::cout << "ClapTrap " << _name << " heals " << amount << " hit points !" << std::endl;
+		}
+	}
+
+	int		ClapTrap::checkHitPoints()
+	{
+		if (_hitPoints)
+			return 1;
+		std::cout << "NO HIT POINTS LEFT!" << std::endl;
+		return 0;
+	}
+
+	int		ClapTrap::checkEneryPoints()
+	{
+		if (_energyPoints)
+			return 1;
+		std::cout << "NO ENERGY POINTS LEFT!" << std::endl;
+		return 0;
+	}
