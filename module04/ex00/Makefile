@@ -12,21 +12,30 @@ NAME		= animal
 CC			= c++
 CPPFLAGS	= -Wall -Wextra -Werror -pedantic
 
-SRC			= Animal.cpp
+SRC			= main.cpp \
+				Animal.cpp \
 				Cat.cpp \
-				
-OBJ			= $(SRC:.cpp=.o)
+				Dog.cpp \
+				WrongAnimal.cpp \
+				WrongCat.cpp
+
+OBJ_DIR		= .build
+OBJ			= $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
+$(OBJ_DIR)/%.o: %.cpp
+	mkdir -p $(dir $@)
+	$(CC) $(CPPFLAGS) -c $< -o $@
+
 leaks l: $(NAME)
 	$(LEAKS_CMD) ./$(NAME)
 
 clean:
-	rm -rf $(OBJ)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -rf $(NAME)
