@@ -1,60 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Animal.cpp                                         :+:    :+:            */
+/*   AMateria.cpp                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/03 19:22:51 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/07 10:47:38 by mademir       ########   odam.nl         */
+/*   Created: 2024/02/08 14:21:13 by mademir       #+#    #+#                 */
+/*   Updated: 2024/02/09 06:12:36 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AMateria.hpp"
 
 /******** CONSTRUCTOR(S) ******************************************************/
 
-	Animal::Animal()
+	AMateria::AMateria()
 	{
-		std::cout << "Animal default constructor called" << std::endl;
-		this->type = "Animal";
+		type = "default";
 	}
 
-	Animal::Animal(const Animal &toCopy)
+	AMateria::AMateria(std::string const &type)
 	{
-		std::cout << "Animal copy constructor called" << std::endl;
-		(*this) = toCopy;
+		this->type = type;
+	}
+
+	AMateria::AMateria(const AMateria &toCopy)
+	{
+		*this = toCopy;
 	}
 
 /******** DESTRUCTOR **********************************************************/
 
-	Animal::~Animal()
-	{
-		std::cout << "Animal destructor called" << std::endl;
-	}
+	AMateria::~AMateria() {}
 
 /******** OVERLOAD FUNCTION(S) ************************************************/
 
-	Animal&	Animal::operator = (const Animal &toCopy)
+	AMateria&	AMateria::operator = (const AMateria &toCopy)
 	{
-		std::cout << "Animal copy assignement operator called" << std::endl;
 		if (this != &toCopy)
 		{
-			this->type = toCopy.type;
+			// While assigning a Materia to another,
+			// copying the type doesn’t make sense.
 		}
 		return (*this);
 	}
 
 /******** GETTER(S) ***********************************************************/
 
-	std::string	Animal::getType() const
+	std::string const&		AMateria::getType() const
 	{
-		return (type);
+		return (this->type);
 	}
 
 /******** HELPER(S) ***********************************************************/
 
-	void	Animal::makeSound() const
+	void	AMateria::use(ICharacter& target)
 	{
-		std::cout	<< "No Sound" << std::endl;
+		(void)target;
 	}

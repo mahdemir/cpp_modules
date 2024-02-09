@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/03 19:22:51 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/07 10:47:38 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/08 11:04:37 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,4 @@
 	std::string	Animal::getType() const
 	{
 		return (type);
-	}
-
-/******** HELPER(S) ***********************************************************/
-
-	void	Animal::makeSound() const
-	{
-		std::cout	<< "No Sound" << std::endl;
 	}

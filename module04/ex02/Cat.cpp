@@ -1,60 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Animal.cpp                                         :+:    :+:            */
+/*   Cat.cpp                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/03 19:22:51 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/07 10:47:38 by mademir       ########   odam.nl         */
+/*   Created: 2024/02/03 19:22:55 by mademir       #+#    #+#                 */
+/*   Updated: 2024/02/07 12:00:59 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "Cat.hpp"
 
 /******** CONSTRUCTOR(S) ******************************************************/
 
-	Animal::Animal()
+	Cat::Cat()
 	{
-		std::cout << "Animal default constructor called" << std::endl;
-		this->type = "Animal";
+		std::cout << "Cat default constructor called" << std::endl;
+		type = "Cat";
+		br = new Brain();
 	}
 
-	Animal::Animal(const Animal &toCopy)
+	Cat::Cat(const Cat &toCopy)
 	{
-		std::cout << "Animal copy constructor called" << std::endl;
+		std::cout << "Cat copy constructor called" << std::endl;
 		(*this) = toCopy;
 	}
 
 /******** DESTRUCTOR **********************************************************/
-
-	Animal::~Animal()
+	
+	Cat::~Cat() 
 	{
-		std::cout << "Animal destructor called" << std::endl;
+		delete(br);
+		std::cout << "Cat destructor called" << std::endl;
 	}
 
 /******** OVERLOAD FUNCTION(S) ************************************************/
 
-	Animal&	Animal::operator = (const Animal &toCopy)
+	Cat&	Cat::operator = (const Cat &toCopy)
 	{
-		std::cout << "Animal copy assignement operator called" << std::endl;
+		std::cout << "Cat copy assignement operator called" << std::endl;
 		if (this != &toCopy)
 		{
-			this->type = toCopy.type;
+			(*this).Animal::operator=(toCopy);
+			br = new Brain(*(toCopy.getBrain()));
 		}
 		return (*this);
 	}
 
 /******** GETTER(S) ***********************************************************/
 
-	std::string	Animal::getType() const
+	Brain*	Cat::getBrain() const
 	{
-		return (type);
+		return (br);
 	}
 
 /******** HELPER(S) ***********************************************************/
 
-	void	Animal::makeSound() const
+	void	Cat::makeSound() const
 	{
-		std::cout	<< "No Sound" << std::endl;
+		std::cout	<< "Miauww!" << std::endl;
 	}
