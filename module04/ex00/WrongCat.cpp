@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/03 19:31:00 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/03 19:33:27 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/20 10:45:07 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 		type = "WrongCat";
 	}
 
-	WrongCat::WrongCat(const WrongCat &toCopy)
+	WrongCat::WrongCat(const WrongCat &toCopy) : WrongAnimal(toCopy)
 	{
 		std::cout << "WrongCat copy constructor called" << std::endl;
 		(*this) = toCopy;

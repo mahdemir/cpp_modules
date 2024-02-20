@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/08 14:21:18 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/08 15:47:21 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/18 16:52:51 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ public:
 
 	Cure&				operator = (const Cure &toCopy);
 
-	AMateria			*clone() const;
+	Cure*				clone() const;
 	void				use(ICharacter &target);
 };
 

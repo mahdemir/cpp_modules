@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/03 19:23:01 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/08 11:02:23 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/14 10:25:47 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int main(void)
 {
-	// test if Animal is an abstract class
+	// // test if Animal is an abstract class
 	// Animal	err; // compile err
 	
 	std::cout << "Array test\n" << std::endl;

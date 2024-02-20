@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/08 15:24:30 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/09 06:40:37 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/18 17:31:30 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ private:
 	AMateria*		_learnedMateria[4];
 
 public:
-					MateriaSource(void);
+					MateriaSource();
 					MateriaSource(const MateriaSource &toCopy);
-					~MateriaSource(void);
+					~MateriaSource();
 
-	MateriaSource&	operator=(const MateriaSource &toCopy);
+	MateriaSource&	operator = (const MateriaSource &toCopy);
 
 	void			learnMateria(AMateria *materia);
 	AMateria*		createMateria(std::string const &type);

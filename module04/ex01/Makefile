@@ -4,13 +4,13 @@ ifeq ($(shell uname -s), Darwin)
 	LEAKS_CMD = leaks -atExit --
 else ifeq ($(shell uname -s), Linux)
     # Linux
-	LEAKS_CMD = valgrind --leak-check=full -show-leak-kinds=all
+	LEAKS_CMD = valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all
 endif
 
 NAME		= brain
 
 CC			= c++
-CPPFLAGS	= -Wall -Wextra -Werror -pedantic
+CPPFLAGS	= -Wall -Wextra -Werror -pedantic -g3
 
 SRC			= main.cpp \
 				Animal.cpp \

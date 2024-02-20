@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/08 15:26:38 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/09 06:40:21 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/19 13:51:03 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,23 @@
 
 /******** CONSTRUCTOR(S) ******************************************************/
 
-	MateriaSource::MateriaSource(void)
+	MateriaSource::MateriaSource()
 	{
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++)
 			_learnedMateria[i] = NULL;
-		}
 	}
 
 	MateriaSource::MateriaSource(const MateriaSource &toCopy)
 	{
-		for (int i = 0; i < 4; i++) {
-			_learnedMateria[i] = toCopy._learnedMateria[i]->clone();
-		}
 		*this = toCopy;
 	}
 
 /******** DESTRUCTOR **********************************************************/
 
-	MateriaSource::~MateriaSource(void)
+	MateriaSource::~MateriaSource()
 	{
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++)
+		{
 			if (_learnedMateria[i])
 				delete _learnedMateria[i];
 		}
@@ -41,9 +38,10 @@
 
 /******** OVERLOAD FUNCTION(S) ************************************************/
 
-	MateriaSource	&MateriaSource::operator=(const MateriaSource &toCopy)
+	MateriaSource&	MateriaSource::operator = (const MateriaSource &toCopy)
 	{
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++)
+		{
 			if (_learnedMateria[i])
 				delete _learnedMateria[i];
 			_learnedMateria[i] = toCopy._learnedMateria[i]->clone();
@@ -55,20 +53,25 @@
 
 	void	MateriaSource::learnMateria(AMateria *materia)
 	{
-		for (int i = 0; i < 4; i++) {
-			if (!_learnedMateria[i]) {
+		if (!materia)
+			return ;
+		for (int i = 0; i < 4; i++)
+		{
+			if (!_learnedMateria[i])
+			{
 				_learnedMateria[i] = materia->clone();
-				delete materia;
-				break;
+				break ;
 			}
 		}
+		delete materia;
 	}
 
-	AMateria	*MateriaSource::createMateria(std::string const &type)
+	AMateria*	MateriaSource::createMateria(std::string const &type)
 	{
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++)
+		{
 			if (_learnedMateria[i] && _learnedMateria[i]->getType() == type)
 				return (_learnedMateria[i]->clone());
 		}
-		return (0);
+		return (NULL);
 	}

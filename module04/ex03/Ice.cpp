@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/08 14:21:20 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/08 14:30:57 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/15 14:23:44 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /******** CONSTRUCTOR(S) ******************************************************/
 
-	Ice::Ice(void) : AMateria("ice") {}
+	Ice::Ice() : AMateria("ice") {}
 
 	Ice::Ice(const Ice &toCopy) : AMateria("ice")
 	{
@@ -23,7 +23,7 @@
 
 /******** DESTRUCTOR **********************************************************/
 
-	Ice::~Ice(void) {}
+	Ice::~Ice() {}
 
 /******** OVERLOAD FUNCTION(S) ************************************************/
 
@@ -39,7 +39,7 @@
 
 /******** HELPER(S) ***********************************************************/
 
-	AMateria	*Ice::clone(void) const
+	Ice*	Ice::clone() const
 	{
 		return (new Ice());
 	}

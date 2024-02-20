@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/03 19:22:55 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/07 12:00:59 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/20 10:46:04 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 		br = new Brain();
 	}
 
-	Cat::Cat(const Cat &toCopy)
+	Cat::Cat(const Cat &toCopy) : Animal(toCopy)
 	{
 		std::cout << "Cat copy constructor called" << std::endl;
 		(*this) = toCopy;

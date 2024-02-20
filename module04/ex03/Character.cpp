@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/08 15:20:41 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/09 06:41:04 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/19 14:06:57 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 	Character::Character(std::string name)
 	{
 		_name = name;
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++)
 			_slot[i] = NULL;
-		}
 	}
 
 	Character::Character(const Character &toCopy)
 	{
 		_name = toCopy._name;
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++)
+		{
 			_slot[i] = toCopy._slot[i]->clone();
 		}
 		*this = toCopy;
@@ -35,10 +35,10 @@
 
 	Character::~Character(void)
 	{
-		for (int i = 0; i < 4; i++) {
-			if (_slot[i]) {
+		for (int i = 0; i < 4; i++)
+		{
+			if (_slot[i])
 				delete _slot[i];
-			}
 		}
 	}
 
@@ -47,7 +47,8 @@
 	Character	&Character::operator=(const Character &toCopy)
 	{
 		_name = toCopy._name;
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++)
+		{
 			if (_slot[i])
 				delete _slot[i];
 			_slot[i] = toCopy._slot[i]->clone();
@@ -66,17 +67,21 @@
 
 	void	Character::equip(AMateria *m)
 	{
-		for (int i = 0; i < 4; i++) {
-			if (!_slot[i]) {
+		for (int i = 0; i < 4; i++)
+		{
+			if (!_slot[i])
+			{
 				_slot[i] = m;
-				break;
+				return ;
 			}
 		}
+		delete m;
 	}
 
 	void	Character::unequip(int idx)
 	{
-		if (idx < 4 && idx >= 0) {
+		if (idx < 4 && idx >= 0)
+		{
 			if (_slot[idx])
 				_slot[idx] = NULL;
 		}
@@ -86,9 +91,4 @@
 	{
 		if (idx < 4 && _slot[idx])
 			_slot[idx]->use(target);
-	}
-
-	AMateria*	Character::getMateriaFromInventory(int idx)
-	{
-		return (this->_slot[idx]);
 	}

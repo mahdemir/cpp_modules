@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/08 14:21:16 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/08 15:15:46 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/15 14:23:37 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /******** CONSTRUCTOR(S) ******************************************************/
 
-	Cure::Cure(void) : AMateria("cure") {}
+	Cure::Cure() : AMateria("cure") {}
 
 	Cure::Cure(const Cure &toCopy) : AMateria("cure")
 	{
@@ -23,7 +23,7 @@
 
 /******** DESTRUCTOR **********************************************************/
 
-	Cure::~Cure(void) {}
+	Cure::~Cure() {}
 
 /******** OVERLOAD FUNCTION(S) ************************************************/
 
@@ -39,7 +39,7 @@
 
 /******** HELPER(S) ***********************************************************/
 
-	AMateria	*Cure::clone(void) const
+	Cure*	Cure::clone() const
 	{
 		return (new Cure());
 	}

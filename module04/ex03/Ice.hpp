@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/08 14:21:22 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/09 06:22:54 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/18 16:52:46 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 /******** CLASSES *************************************************************/
 
-class Ice : virtual public AMateria
+class Ice : public AMateria
 {
 public:
 						Ice();
@@ -30,7 +30,7 @@ public:
 
 	Ice&				operator = (const Ice &toCopy);
 
-	AMateria*			clone(void) const;
+	Ice*				clone() const;
 	void				use(ICharacter& target);
 };
 

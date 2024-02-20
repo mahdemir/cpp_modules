@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/03 19:23:01 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/03 19:53:31 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/14 09:54:46 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,28 +49,22 @@ int main()
 	animal = new Dog();
 	std::cout << animal->getType() << " makes sound ";
 	animal->makeSound();
-	delete animal;
+	delete (animal);
 	std::cout << std::endl;
 	
 	animal = new Cat();
 	std::cout << animal->getType() << " makes sound ";
 	animal->makeSound();
-	delete animal;
+	delete (animal);
 	std::cout << std::endl;
 
 	std::cout << "WRONG TESTS:\n" << std::endl;
 
-	const WrongAnimal* l = new WrongAnimal();
 	const WrongAnimal* k = new WrongCat();
 
-	std::cout << l->getType() << std::endl;
 	std::cout << k->getType() << std::endl;
-
 	k->makeSound();
-	l->makeSound();
-
 	delete (k);
-	delete (l);
 
-	return 0;
+	return (0);
 }

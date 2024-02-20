@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/08 15:17:27 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/09 06:23:00 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/15 15:07:04 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ public:
 	void				equip(AMateria *m);
 	void				unequip(int idx);
 	void				use(int idx, ICharacter &target);
-	AMateria*			getMateriaFromInventory(int idx);
 };
 
 #endif // CHARACTER_HPP

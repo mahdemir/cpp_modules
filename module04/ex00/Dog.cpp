@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/03 19:22:56 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/03 19:22:57 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/20 10:44:51 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 		type = "Dog";
 	}
 
-	Dog::Dog(const Dog &toCopy)
+	Dog::Dog(const Dog &toCopy) : Animal(toCopy)
 	{
 		std::cout << "Dog copy constructor called" << std::endl;
 		(*this) = toCopy;
