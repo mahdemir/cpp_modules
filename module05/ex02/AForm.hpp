@@ -1,7 +1,7 @@
 /******** DEFINES *************************************************************/
 
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AForm_HPP
+#define AForm_HPP
 
 /******** INCLUDES ************************************************************/
 
@@ -12,7 +12,7 @@
 
 class Bureaucrat;
 
-class Form
+class AAForm
 {
 private:
 	const std::string		_name;
@@ -21,16 +21,18 @@ private:
 	const int				_requiredToExecute;
 
 public:
-						Form();
-						Form(std::string name, int rts, int rte);
-						Form(const Form& toCopy);
-						~Form();
+						AForm();
+						AForm(std::string name, int rts, int rte);
+						AForm(const AForm& toCopy);
+	virtual				~AForm();
 
-	Form&				operator = (const Form& toCopy);
+	AForm&				operator = (const AForm& toCopy);
 
 	int					validateGrade(int grade);
 
 	void				beSigned(Bureaucrat& signer);
+
+	virtual void		execute(const Bureaucrat& executor) const = 0;
 
 	const std::string	getName() const;
 	bool				getSign() const;
@@ -51,6 +53,6 @@ public:
 
 /******** PROTOTYPE(S) ********************************************************/
 
-std::ostream&	operator << (std::ostream& COUT, Form& toPrint);
+std::ostream&	operator << (std::ostream& COUT, AForm& toPrint);
 
-#endif // FORM_HPP
+#endif // AForm_HPP

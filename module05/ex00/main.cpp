@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/21 13:55:15 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/21 15:29:21 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/22 12:35:03 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main()
 	}
 	catch (std::exception& e)
 	{
-		std::cout << "Catched exception: " << e.what() << std::endl;
+		std::cerr << "Catched exception: " << e.what() << std::endl;
 	}
 	std::cout << "\n";
 	
@@ -38,7 +38,7 @@ int main()
 	}
 	catch (std::exception& e)
 	{
-		std::cout << "Catched exception: " << e.what() << std::endl;
+		std::cerr << "Catched exception: " << e.what() << std::endl;
 	}
 	std::cout << "\n";
 	
@@ -52,7 +52,7 @@ int main()
 	}
 	catch (std::exception& e)
 	{
-		std::cout << "Catched exception: " << e.what() << std::endl;
+		std::cerr << "Catched exception: " << e.what() << std::endl;
 	}
 	std::cout << "\n";
 	
@@ -66,7 +66,7 @@ int main()
 	}
 	catch (std::exception& e)
 	{
-		std::cout << "Catched exception: " << e.what() << std::endl;
+		std::cerr << "Catched exception: " << e.what() << std::endl;
 	}
 	std::cout << "\n";
 	
@@ -79,7 +79,7 @@ int main()
 	}
 	catch (std::exception& e)
 	{
-		std::cout << "Catched exception: " << e.what() << std::endl;
+		std::cerr << "Catched exception: " << e.what() << std::endl;
 	}
 
 	return (0);
