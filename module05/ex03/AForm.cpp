@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/24 11:24:27 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/24 14:06:42 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/24 17:32:55 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,12 @@
 
 	void	AForm::beSigned(Bureaucrat& signer)
 	{
-		if (signer.getGrade() > _requiredToSign)
+		if ((signer.getGrade() > _requiredToSign))
 		{
 			throw AForm::GradeTooLowException();
 		}
-		_signed = true;
+		else
+			_signed = true;
 	}
 
 /******** EXCEPTION(S) ********************************************************/

@@ -6,64 +6,59 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/21 13:55:15 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/22 12:38:08 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/24 14:49:22 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main()
 {
-	// one
-	std::cout << "ONE:\n";
+	Bureaucrat a("Bureaucrat", 1);
 
-    Bureaucrat a1("one", 150);
-    Form b1("one's form", 150, 120);
-
-	std::cout << "\nBureaucrat info:\n" << a1 << "\n";
-    std::cout << b1 << "\n";
-
-	a1.signForm(b1);
-    std::cout << "\n\n" << b1;
-
-	// two
-	std::cout << "TWO:\n";
-    Bureaucrat a2("two", 120);
-    Form b2("two's form", 1, 120);
-	a2.signForm(b2);
-    std::cout << b2 << "\n" << std::endl;
-
-	// three
 	try
 	{
-		Form f3;
-		std::cout << f3;
+		ShrubberyCreationForm one;
+		std::cout << "\n";
+		a.signForm(one); // grade to sign >145
+		one.execute(a); // grade to exec >137
+		std::cout << "\n";
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "Exception caught: " << e.what() << std::endl;
 	}
-	std::cout << "\n";
+	std::cout << "\n" << "******************************" << "\n\n";
 
-	// four
 	try
 	{
-		Form f4("four's form", 1, 0);
+		RobotomyRequestForm one;
+		std::cout << "\n";
+		a.signForm(one); // grade to sign >72
+		one.execute(a); // grade to exec >45
+		std::cout << "\n";
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "Exception caught: " << e.what() << std::endl;
 	}
+	std::cout << "\n" << "******************************" << "\n\n";
 
-	// five
 	try
 	{
-		Form f5("five's form", 432423, 33);
+		PresidentialPardonForm one;
+		std::cout << "\n";
+		a.signForm(one); // grade to sign >25
+		a.executeForm(one); // grade to exec >5
+		one.execute(a); // grade to exec >5
+		std::cout << "\n";
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "Exception caught: " << e.what() << std::endl;
 	}
-
     return (0);
 }

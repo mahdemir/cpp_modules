@@ -7,7 +7,7 @@ else ifeq ($(shell uname -s), Linux)
 	LEAKS_CMD = valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all
 endif
 
-NAME		= form
+NAME		= intern
 
 CC			= c++
 CPPFLAGS	= -Wall -Wextra -Werror -pedantic -g3
@@ -17,7 +17,8 @@ SRC			= main.cpp \
 				AForm.cpp \
 				ShrubberyCreationForm.cpp \
 				RobotomyRequestForm.cpp \
-				PresidentialPardonForm.cpp
+				PresidentialPardonForm.cpp \
+				Intern.cpp
 
 OBJ_DIR		= .build
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
@@ -39,7 +40,6 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
-	rm -f *.txt
 
 re:	fclean all
 

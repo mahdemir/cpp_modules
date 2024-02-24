@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/21 13:55:23 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/22 09:21:50 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/24 13:51:41 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class Bureaucrat
 private:
 	const std::string	_name;
 	int					_grade;
-	int					validateGrade(int grade);
+	int					_validateGrade(int grade);
 public:
 						Bureaucrat();
 						Bureaucrat(std::string name, int grade);

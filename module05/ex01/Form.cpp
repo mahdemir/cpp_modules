@@ -7,7 +7,7 @@
 					_requiredToSign(150),
 					_requiredToExecute(150)
 	{
-		std::cout << "Default constructor called" << std::endl;
+		std::cout << "Form default constructor called" << std::endl;
 	}
 
 	Form::Form(std::string name, int rts, int rte) :	_name(name),
@@ -15,7 +15,7 @@
 														_requiredToSign(rts),
 														_requiredToExecute(rte)
 	{
-		std::cout << "Parameterized constructor called" << std::endl;
+		std::cout << "Form parameterized constructor called" << std::endl;
 		if (validateGrade(_requiredToSign) == 1)
 			throw GradeTooHighException();
 		if (validateGrade(_requiredToSign) == 2)
@@ -30,7 +30,7 @@
 									 _requiredToSign(toCopy._requiredToSign),
 									 _requiredToExecute(toCopy._requiredToExecute)
 	{
-		std::cout << "Copy constructor called" << std::endl;
+		std::cout << "Form copy constructor called" << std::endl;
 		*this = toCopy;
 	}
 
@@ -38,7 +38,7 @@
 
 	Form::~Form()
 	{
-		std::cout << "Destructor called" << std::endl;
+		std::cout << "Form destructor called" << std::endl;
 	}
 
 /******** OVERLOAD FUNCTION(S) ************************************************/
@@ -46,9 +46,7 @@
 	Form&	Form::operator = (const Form& toCopy)
 	{
 		if (this != &toCopy)
-		{
 			_signed = toCopy._signed;
-		}
 		return (*this);
 	}
 
@@ -99,9 +97,7 @@
 	void	Form::beSigned(Bureaucrat& signer)
 	{
 		if (signer.getGrade() > _requiredToSign)
-		{
 			throw Form::GradeTooLowException();
-		}
 		_signed = true;
 	}
 

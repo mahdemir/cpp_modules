@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/21 13:55:25 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/22 12:36:05 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/24 13:51:41 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@
 
 	Bureaucrat::Bureaucrat() : _name("default"), _grade(150)
 	{
-		std::cout << "Default constructor called" << std::endl;
+		std::cout << "Bureaucrat default constructor called" << std::endl;
 	}
 
 	Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 	{
-		std::cout << "Parameterized constructor called" << std::endl;
-		if (validateGrade(grade) == 1)
+		std::cout << "Bureaucrat parameterized constructor called" << std::endl;
+		if (_validateGrade(grade) == 1)
 			throw Bureaucrat::GradeTooHighException();
-		if (validateGrade(grade) == 2)
+		if (_validateGrade(grade) == 2)
 			throw Bureaucrat::GradeTooLowException();
 		_grade = grade;
 	}
 
 	Bureaucrat::Bureaucrat(const Bureaucrat& toCopy) : _name(toCopy._name)
 	{
-		std::cout << "Copy constructor called" << std::endl;
+		std::cout << "Bureaucrat copy constructor called" << std::endl;
 		*this = toCopy;
 	}
 
@@ -39,7 +39,7 @@
 
 	Bureaucrat::~Bureaucrat()
 	{
-		std::cout << "Destructor called" << std::endl;
+		std::cout << "Bureaucrat destructor called" << std::endl;
 	}
 
 /******** OVERLOAD FUNCTION(S) ************************************************/
@@ -74,7 +74,7 @@
 
 /******** HELPER(S) ***********************************************************/
 
-	int	Bureaucrat::validateGrade(int grade)
+	int	Bureaucrat::_validateGrade(int grade)
 	{
 		if (grade < 1)
 			return 1; // if too high
@@ -85,14 +85,14 @@
 
 	void	Bureaucrat::incrementGrade()
 	{
-		if (validateGrade(_grade - 1) == 1)
+		if (_validateGrade(_grade - 1) == 1)
 			throw Bureaucrat::GradeTooHighException();
 		_grade--;
 	}
 
 	void	Bureaucrat::decrementGrade()
 	{
-		if (validateGrade(_grade + 1) == 2)
+		if (_validateGrade(_grade + 1) == 2)
 			throw Bureaucrat::GradeTooLowException();
 		_grade++;
 	}
@@ -102,7 +102,7 @@
 		try
 		{
 			form.beSigned(*this);
-			std::cout << getName() << " signed " << form.getName();
+			std::cout << getName() << " signed " << form.getName() << std::endl;
 		}
 		catch (std::exception& e)
 		{
