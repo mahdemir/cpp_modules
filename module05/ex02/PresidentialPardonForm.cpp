@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/24 11:24:03 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/24 12:47:36 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/24 21:48:39 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 	}
 
 	PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& toCopy)
+																		: AForm(toCopy)
 	{
 		std::cout << "PresidentialPardonForm copy constructor called" << std::endl;
 		*this = toCopy;

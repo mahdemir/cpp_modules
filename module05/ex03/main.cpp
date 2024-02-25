@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/21 13:55:15 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/24 20:03:42 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/24 22:35:15 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main()
 		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 		rrf->beSigned(a);
 		rrf->execute(a);
+		someRandomIntern.destroyForm(rrf);
 	}
 	catch (std::exception& e)
 	{
@@ -37,10 +38,11 @@ int	main()
 	try
 	{
 		Intern  someRandomIntern;
-		AForm*   rrf;
-		rrf = someRandomIntern.makeForm("presidential pardon", "test");
-		rrf->beSigned(a);
-		rrf->execute(a);
+		AForm*   ppf;
+		ppf = someRandomIntern.makeForm("presidential pardon", "test");
+		ppf->beSigned(a);
+		ppf->execute(a);
+		someRandomIntern.destroyForm(ppf);
 	}
 	catch (std::exception& e)
 	{

@@ -1,50 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Intern.hpp                                         :+:    :+:            */
+/*   classC.hpp                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/24 22:39:17 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/24 22:39:18 by mademir       ########   odam.nl         */
+/*   Created: 2024/02/25 11:40:47 by mademir       #+#    #+#                 */
+/*   Updated: 2024/02/25 12:06:39 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 /******** DEFINES *************************************************************/
 
-#ifndef INTERN_HPP
-#define INTERN_HPP
+#ifndef C_HPP
+#define C_HPP
 
 /******** INCLUDES ************************************************************/
 
-#include "AForm.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "ShrubberyCreationForm.hpp"
+#include "Base.hpp"
 
 /******** CLASSES *************************************************************/
 
-class Intern
+class C : public Base
 {
-private:
-	AForm*	createPPF(std::string target);
-	AForm*	createSCF(std::string target);
-	AForm*	createRRF(std::string target);
-
 public:
-			Intern();
-			Intern(const Intern& toCopy);
-			~Intern();
-
-	Intern&	operator = (const Intern& toCopy);
-
-	AForm*	makeForm(std::string formName, std::string target);
-	void	destroyForm(AForm* form);
-
-	class FormNameInvalid : public std::exception
-	{
-		virtual const char* what() const throw();
-	};
+	C() {}
+	~C() {}
 };
 
-#endif // INTERN_HPP
+#endif // C_HPP

@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/24 11:24:14 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/24 12:23:02 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/24 21:48:33 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 	}
 
 	RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& toCopy)
+																		: AForm(toCopy)
 	{
 		std::cout << "RobotomyRequestForm copy constructor called" << std::endl;
 		*this = toCopy;

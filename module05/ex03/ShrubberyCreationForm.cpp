@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/24 14:51:00 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/24 14:51:01 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/24 21:48:20 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 	}
 
 	ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& toCopy)
+																		: AForm(toCopy)
 	{
 		std::cout << "ShrubberyCreationForm copy constructor called" << std::endl;
 		*this = toCopy;
