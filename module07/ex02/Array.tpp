@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/28 17:35:15 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/29 14:22:03 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/29 15:31:25 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ T&	Array<T>::operator [] (unsigned int index)
 	if (index < 0 || index > _size)
 		throw indexOutOfBound();
 	return ((*this)._arr[index]);
+}
+
+template <typename T>
+const T&	Array<T>::operator [] (unsigned int index) const
+{
+	return (const_cast<Array*>(this)->operator[](index));
 }
 
 /******** GETTER(S) ***********************************************************/

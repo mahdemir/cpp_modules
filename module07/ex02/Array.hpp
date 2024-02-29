@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/28 17:35:17 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/29 13:34:28 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/29 15:31:21 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ public:
 
 	Array&			operator = (const Array& toCopy);
 	T&				operator [] (unsigned int index);
+	const T&		operator [] (unsigned int index) const;
 
 	unsigned int	size() const;
 

@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/29 14:40:02 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/29 15:03:35 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/29 15:39:27 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,45 @@ int	main()
 		nums[i] = 1 + i;
 		::print(nums[i]);
 	}
-	std::cout	<< "\n"
-				<< "Char array:\n";
+	
+	std::cout	<< "\nChar array:\n";
 	Array<char> chars(SIZE);
 	for(int i = 0; i < SIZE; i++)
 	{
 		chars[i] = 65 + i;
 		::print(chars[i]);
 	}
-	std::cout	<< "\n"
-				<< "Double array:\n";
+	
+	std::cout	<< "\nMaking copy of char array:\n";
+	Array<char> charsCopy(chars);
+	for(int i = 0; i < SIZE; i++)
+	{
+		charsCopy[i] = 65 + i;
+		::print(charsCopy[i]);
+	}
+
+	std::cout	<< "\nModify new arr index[0] to 'X':\n";
+	charsCopy[0] = 'X';
+	std::cout << charsCopy[0] << std::endl;
+	std::cout	<< "Print old arr index[0]:\n";
+	std::cout << chars[0] << std::endl;
+	
+
+	std::cout	<< "\nDouble array:\n";
 	Array<double> doubles(SIZE);
 	for(int i = 0; i < SIZE; i++)
 	{
 		doubles[i] = 0.2 + i;
 		::print(doubles[i]);
 	}
-	std::cout	<< "\n"
-				<< "Calling copy constructor with nums variable:\n";
-	Array<int> newnums(nums);
+
+	std::cout	<< "\nCalling copy constructor to const variable:\n";
+	const Array<int> constInt(nums);
 	for(int i = 0; i < SIZE; i++)
 	{
-		::print(newnums[i]);
+		::print(constInt[i]);
 	}
-	std::cout	<< "\n"
-				<< "Try to acces index [" << EXCEPTION_TEST << "]:\n";
+	std::cout	<< "\nTry to acces index [" << EXCEPTION_TEST << "]:\n";
     try
     {
         nums[EXCEPTION_TEST] = EXCEPTION_TEST;
