@@ -17,6 +17,8 @@ SRC			= main.cpp
 OBJ_DIR		= .build
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 
+DEPENDS		= $(OBJ:.o=.d)
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
@@ -24,7 +26,9 @@ $(NAME): $(OBJ)
 
 $(OBJ_DIR)/%.o: %.cpp
 	mkdir -p $(dir $@)
-	$(CC) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(CPPFLAGS) -MMD -c $< -o $@
+
+-include $(DEPENDS)
 
 leaks l: $(NAME)
 	$(LEAKS_CMD) ./$(NAME)

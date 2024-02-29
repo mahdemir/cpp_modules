@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/28 17:35:17 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/28 18:17:32 by mademir       ########   odam.nl         */
+/*   Updated: 2024/02/29 13:34:28 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,21 @@ private:
 public:
 					Array();
 					Array(unsigned int n);
-					Array(const Array<T> &toCopy);
+					Array(const Array& toCopy);
 					~Array();
 
-	Array<T>		&operator = (const Array<T> &toCopy);
-	// [] overload
+	Array&			operator = (const Array& toCopy);
+	T&				operator [] (unsigned int index);
+
 	unsigned int	size() const;
 
-
+	class indexOutOfBound : public std::exception
+	{
+   		virtual const char* what() const throw()
+		{
+			return ("Index out of bound");
+		}
+	};
 };
 
 #endif // ARRAY_HPP
