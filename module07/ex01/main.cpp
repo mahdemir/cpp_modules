@@ -6,11 +6,13 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/28 14:01:22 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/29 13:31:36 by mademir       ########   odam.nl         */
+/*   Updated: 2024/03/06 21:32:10 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
+
+#define LEN 5
 
 int	main()
 {

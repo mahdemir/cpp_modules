@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/29 14:40:02 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/29 15:39:27 by mademir       ########   odam.nl         */
+/*   Updated: 2024/03/06 21:27:39 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "Array.tpp"
 
 #define SIZE 10
-#define EXCEPTION_TEST -2
+#define EXCEPTION_TEST 10
 
 int	main()
 {

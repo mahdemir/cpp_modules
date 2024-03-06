@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/28 17:35:15 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/29 15:31:25 by mademir       ########   odam.nl         */
+/*   Updated: 2024/03/06 21:30:25 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,22 @@ Array<T>&	Array<T>::operator = (const Array& toCopy)
 		delete[] (_arr);
 		_size = toCopy._size;
 		_arr = new T[toCopy._size];
-		for (unsigned int i = 0; i < toCopy._size; i++)
+		for (int i = 0; i < toCopy._size; i++)
 			_arr[i] = toCopy._arr[i];
 	}
 	return (*this);
 }
 
 template <typename T>
-T&	Array<T>::operator [] (unsigned int index)
+T&	Array<T>::operator [] (int index)
 {
-	if (index < 0 || index > _size)
+	if (index < 0 || index > (_size - 1))
 		throw indexOutOfBound();
 	return ((*this)._arr[index]);
 }
 
 template <typename T>
-const T&	Array<T>::operator [] (unsigned int index) const
+const T&	Array<T>::operator [] (int index) const
 {
 	return (const_cast<Array*>(this)->operator[](index));
 }
@@ -69,7 +69,7 @@ const T&	Array<T>::operator [] (unsigned int index) const
 /******** GETTER(S) ***********************************************************/
 
 template <typename T>
-unsigned int	Array<T>::size() const { return (_size); }
+int	Array<T>::size() const { return (_size); }
 
 /******** HELPER(S) ***********************************************************/
 

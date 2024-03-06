@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/28 17:35:17 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/29 15:31:21 by mademir       ########   odam.nl         */
+/*   Updated: 2024/03/06 21:29:57 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class Array
 {
 private:
 	T*				_arr;
-	unsigned int	_size;
+	int				_size;
 
 public:
 					Array();
@@ -36,10 +36,10 @@ public:
 					~Array();
 
 	Array&			operator = (const Array& toCopy);
-	T&				operator [] (unsigned int index);
-	const T&		operator [] (unsigned int index) const;
+	T&				operator [] (int index);
+	const T&		operator [] (int index) const;
 
-	unsigned int	size() const;
+	int				size() const;
 
 	class indexOutOfBound : public std::exception
 	{

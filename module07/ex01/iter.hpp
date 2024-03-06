@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/28 14:01:33 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/29 13:35:42 by mademir       ########   odam.nl         */
+/*   Updated: 2024/03/06 21:32:06 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 #ifndef ITER_HPP
 #define ITER_HPP
-
-#define LEN 5
 
 /******** INCLUDE(S) **********************************************************/
 
