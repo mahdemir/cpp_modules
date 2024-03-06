@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/04 13:47:20 by mademir       #+#    #+#                 */
-/*   Updated: 2024/03/05 16:43:34 by mademir       ########   odam.nl         */
+/*   Updated: 2024/03/06 20:01:48 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ PmergeMe::PmergeMe() {}
 
 PmergeMe::PmergeMe(const PmergeMe& toCopy)
 {
-	(void)toCopy;
+	*this = toCopy;
 }
 
 /******** DESTRUCTOR **********************************************************/
@@ -31,7 +31,8 @@ PmergeMe&	PmergeMe::operator = (const PmergeMe& toCopy)
 {
 	if (this != &toCopy)
 	{
-		(void)toCopy;
+		_vector = toCopy._vector;
+		_list = toCopy._list;
 	}
 	return (*this);
 }
@@ -41,10 +42,7 @@ PmergeMe&	PmergeMe::operator = (const PmergeMe& toCopy)
 inline static double	calculateDuration(clock_t start, clock_t end)
 {
 	double sec = static_cast<double>(end - start) / CLOCKS_PER_SEC;
-	double ms = sec * 1000000.0;
- 	std::chrono::microseconds duration(static_cast<long long>(ms));
-    double time = duration.count() / 1000000.0;
-	return (time);
+	return (sec);
 }
 
 void	PmergeMe::sortVector(int argc, char **argv)
@@ -78,7 +76,7 @@ void	PmergeMe::sortVector(int argc, char **argv)
 				<< " elements with std::vector : "
 				<< std::fixed
 				<< time
-				<< " us"
+				<< " s"
 				<< std::endl;
 }
 
@@ -91,6 +89,7 @@ void	PmergeMe::sortList(int argc, char **argv)
 		_list.push_back(safeToInt(std::string(argv[i])));
 
 	// printVal(_list ,"Before:");
+	
     for (auto it = std::next(_list.begin()); it != _list.end(); ++it)
 	{
         int key = *it;
@@ -102,6 +101,7 @@ void	PmergeMe::sortList(int argc, char **argv)
         }
         *pos = key;
     }
+	
 	// printVal(_list ,"After:");
 	
     double time = calculateDuration(start, clock());
@@ -111,7 +111,7 @@ void	PmergeMe::sortList(int argc, char **argv)
 				<< " elements with std::list   : "
 				<< std::fixed
 				<< time
-				<< " us"
+				<< " s"
 				<< std::endl;
 }
 
