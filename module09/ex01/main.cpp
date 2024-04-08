@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/04 08:06:10 by mademir       #+#    #+#                 */
-/*   Updated: 2024/03/06 14:19:42 by mademir       ########   odam.nl         */
+/*   Updated: 2024/03/08 07:51:19 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static void	isValid(std::string& str)
 static int	calculation(int& num1, int& num2, char& c)
 {
 	int	sum = 0;
-
 	if (c == '+')
 		sum = num1 + num2;
 	else if (c == '-')
@@ -58,7 +57,15 @@ static int	calculation(int& num1, int& num2, char& c)
 	else if (c == '*')
 		sum = num1 * num2;
 	else if (c == '/')
-		sum = num1 / num2;
+	{
+		if (num2 != 0)
+			sum = num1 / num2;
+		else
+		{
+			std::cerr << "Error: Division by zero! " << std::endl;
+			exit(1);
+		}
+	}
 	return (sum);
 }
 
@@ -84,7 +91,7 @@ int	main(int argc, char **argv)
 			if (!cstack.sizeStack())
 				exitError("Error");
 			int num1 = cstack.topStack();
-			cstack.popStack();	
+			cstack.popStack();
 			cstack.pushStack(calculation(num1, num2, c));
 		}
 	}

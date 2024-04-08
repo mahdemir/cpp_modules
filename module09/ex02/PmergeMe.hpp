@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/04 13:47:23 by mademir       #+#    #+#                 */
-/*   Updated: 2024/03/06 14:23:31 by mademir       ########   odam.nl         */
+/*   Updated: 2024/04/08 11:19:28 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,90 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
-#define TOMICROSECONDS 1000.0
+#define CACHED_DIFFS 2u, 2u, 6u, 10u, 22u, 42u, 86u, 170u, 342u, 682u, 1366u, \
+2730u, 5462u, 10922u, 21846u, 43690u, 87382u, 174762u, 349526u, 699050u
 
 /******** INCLUDE(S) **********************************************************/
 
 #include <iostream>
-#include <list>
+#include <deque>
 #include <vector>
-#include <ctime>
-#include <chrono>
+#include <list>
+#include <sstream>
+#include <iomanip>
+// #include <ctime>
+// #include <algorithm>
+
 
 /******** CLASS(ES) ***********************************************************/
 
+// Iterator class for groups
+template<typename Iterator>
 class PmergeMe
 {
 private:
-	std::vector<int>	_vector;
-	std::list<int>		_list;
+	Iterator _it;
+	std::size_t _size;
 
 public:
-						PmergeMe();
-						PmergeMe(const PmergeMe& toCopy);
-						~PmergeMe();
+	typedef typename Iterator::iterator_category	iterator_category;
+	typedef typename Iterator::value_type			value_type;
+	typedef typename Iterator::difference_type		difference_type;
+	typedef typename Iterator::reference			reference;
+	typedef typename Iterator::pointer				pointer;
 
-	PmergeMe&			operator = (const PmergeMe& toCopy);
+	// CON/DE-STRUCTOR
+					PmergeMe() = default;
+					PmergeMe(Iterator it, std::size_t size) : _it(it), _size(size) {}
+					~PmergeMe() {};
 
-	void				sortVector(int argc, char **argv);
-	void				sortList(int argc, char **argv);
+	// GETTERS
+	Iterator	getIter() const
+	{
+		return _it;
+	}
 
-	template<typename T>
-	void				printVal(const T& container, const std::string prefix);
+	std::size_t		getSize() const
+	{
+		return _size;
+	}
+
+	// OVERLOAD FUNCTIONS
+	reference		operator * () const
+	{
+		return _it[_size - 1];
+	}
+
+	PmergeMe&		operator += (std::size_t increment)
+	{
+		_it += _size * increment;
+		return *this;
+	}
+
+	PmergeMe&		operator -= (std::size_t increment)
+	{
+		_it -= _size * increment;
+		return *this;
+	}
+
+	bool			operator != (const PmergeMe& toCompare) const
+	{
+		return _it != toCompare._it;
+	}
+
+	PmergeMe		operator + (std::size_t size) const
+	{
+		PmergeMe ret = *this;
+		ret += size;
+		return ret;	
+	}
+
+	difference_type	operator - (const PmergeMe& toSubtract) const
+	{
+		return (_it - toSubtract._it) / _size;
+	}
 };
 
 /******** PROTOTYPE(S) ********************************************************/
-
-int	safeToInt(std::string str);
 
 #endif // PMERGEME_HPP

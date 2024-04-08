@@ -1,16 +1,19 @@
 # System Check
-ifeq ($(shell uname -s), Darwin)
-    # macOS
+ifeq ($(shell uname -s), Darwin) # MacOS
 	LEAKS_CMD = leaks -atExit --
-else ifeq ($(shell uname -s), Linux)
-    # Linux
+else ifeq ($(shell uname -s), Linux) # Linux
 	LEAKS_CMD = valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all
+endif
+
+# Add program arguments to leaks rule
+ifeq (leaks, $(firstword $(MAKECMDGOALS)))
+  ARGS := $(wordlist 2, $(words $(MAKECMDGOALS)), $(MAKECMDGOALS))
 endif
 
 NAME		= PmergeMe
 
 CC			= c++
-CPPFLAGS	= -Wall -Wextra -Werror -std=c++11
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++14
 
 SRC			= main.cpp \
 				PmergeMe.cpp
@@ -32,7 +35,7 @@ $(OBJ_DIR)/%.o: %.cpp
 -include $(DEPENDS)
 
 leaks l: $(NAME)
-	$(LEAKS_CMD) ./$(NAME)
+	$(LEAKS_CMD) ./$(NAME) $(ARGS)
 
 clean:
 	rm -rf $(OBJ_DIR)
