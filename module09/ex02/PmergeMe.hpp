@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/04 13:47:23 by mademir       #+#    #+#                 */
-/*   Updated: 2024/04/08 11:19:28 by mademir       ########   odam.nl         */
+/*   Updated: 2024/04/12 10:38:11 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,34 +26,31 @@
 #include <list>
 #include <sstream>
 #include <iomanip>
-// #include <ctime>
-// #include <algorithm>
-
+#include <algorithm>
 
 /******** CLASS(ES) ***********************************************************/
 
-// Iterator class for groups
-template<typename Iterator>
+template<typename Container>
 class PmergeMe
 {
 private:
-	Iterator _it;
+	Container _it;
 	std::size_t _size;
 
 public:
-	typedef typename Iterator::iterator_category	iterator_category;
-	typedef typename Iterator::value_type			value_type;
-	typedef typename Iterator::difference_type		difference_type;
-	typedef typename Iterator::reference			reference;
-	typedef typename Iterator::pointer				pointer;
+	typedef typename Container::iterator_category	iterator_category;
+	typedef typename Container::value_type			value_type;
+	typedef typename Container::difference_type		difference_type;
+	typedef typename Container::reference			reference;
+	typedef typename Container::pointer				pointer;
 
 	// CON/DE-STRUCTOR
 					PmergeMe() = default;
-					PmergeMe(Iterator it, std::size_t size) : _it(it), _size(size) {}
+					PmergeMe(Container it, std::size_t size) : _it(it), _size(size) {}
 					~PmergeMe() {};
 
 	// GETTERS
-	Iterator	getIter() const
+	Container	getIter() const
 	{
 		return _it;
 	}
@@ -68,6 +65,32 @@ public:
 	{
 		return _it[_size - 1];
 	}
+
+	PmergeMe&	operator++()
+    {
+        _it += _size;
+        return *this;
+    }
+
+    PmergeMe	operator++(int)
+    {
+        auto tmp = *this;
+        operator++();
+        return tmp;
+    }
+
+    PmergeMe&	operator--()
+    {
+        _it -= _size;
+        return *this;
+    }
+
+    PmergeMe	operator--(int)
+    {
+        auto tmp = *this;
+        operator--();
+        return tmp;
+    }
 
 	PmergeMe&		operator += (std::size_t increment)
 	{
@@ -90,7 +113,7 @@ public:
 	{
 		PmergeMe ret = *this;
 		ret += size;
-		return ret;	
+		return ret;
 	}
 
 	difference_type	operator - (const PmergeMe& toSubtract) const

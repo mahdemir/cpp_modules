@@ -13,10 +13,9 @@ endif
 NAME		= PmergeMe
 
 CC			= c++
-CPPFLAGS	= -Wall -Wextra -Werror -std=c++14
+CPPFLAGS	= -Wall -Wextra -Werror -std=c++11
 
-SRC			= main.cpp \
-				PmergeMe.cpp
+SRC			= main.cpp
 
 OBJ_DIR		= .build
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
@@ -34,7 +33,7 @@ $(OBJ_DIR)/%.o: %.cpp
 
 -include $(DEPENDS)
 
-leaks l: $(NAME)
+leaks: $(NAME)
 	$(LEAKS_CMD) ./$(NAME) $(ARGS)
 
 clean:

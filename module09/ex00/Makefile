@@ -7,6 +7,11 @@ else ifeq ($(shell uname -s), Linux)
 	LEAKS_CMD = valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all
 endif
 
+# Add program arguments to leaks rule
+ifeq (leaks, $(firstword $(MAKECMDGOALS)))
+  ARGS := $(wordlist 2, $(words $(MAKECMDGOALS)), $(MAKECMDGOALS))
+endif
+
 NAME		= btc
 
 CC			= c++
@@ -31,7 +36,7 @@ $(OBJ_DIR)/%.o: %.cpp
 
 -include $(DEPENDS)
 
-leaks l: $(NAME)
+leaks: $(NAME)
 	$(LEAKS_CMD) ./$(NAME)
 
 clean:
