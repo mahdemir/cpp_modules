@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/02 13:40:00 by mademir       #+#    #+#                 */
-/*   Updated: 2024/03/06 13:37:07 by mademir       ########   odam.nl         */
+/*   Updated: 2024/05/07 00:58:01 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ static bool	validDate(std::string& line, std::string& allLine)
 		int yyyy = stoi(line.substr(0,4));
 		int maxDay = 31;
 
+		if (mm == 0)
+			badInputMsg(allLine);
 		if (mm % 2 == 0)
 			maxDay = 30;
 		if (mm == 2)
@@ -129,7 +131,15 @@ static bool	validDate(std::string& line, std::string& allLine)
 bool	BitcoinExchange::isValid(std::string& line)
 {
 	std::size_t valuePos;
+	std::string tmp_date;
+	std::size_t pos;
 
+	if (line.find_first_not_of("0123456789-|. ") != std::string::npos)
+		return (badInputMsg(line));
+	tmp_date = line.substr(0, 12);
+	pos = tmp_date.find('|');
+	if (pos == std::string::npos || pos != 11)
+		return (badInputMsg(line));
 	_date = line.substr(0, 10);
 	valuePos = line.find('|');
 	if (valuePos != std::string::npos)
