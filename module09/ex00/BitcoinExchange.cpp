@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/02 13:40:00 by mademir       #+#    #+#                 */
-/*   Updated: 2024/05/07 00:58:01 by mademir       ########   odam.nl         */
+/*   Updated: 2024/05/07 13:57:55 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static bool	validValue(std::string& line, std::string& allLine)
 		}
 	}
 	float val = safeToFloat(line);
-	if ((val < 0 || val > 1000) || line.size() > 4)
+	if ((val < 0 || val > 1000))
 	{
 		std::cerr	<< TOO_LARGE
 					<< std::endl;
