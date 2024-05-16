@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/25 11:41:00 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/25 12:52:52 by mademir       ########   odam.nl         */
+/*   Updated: 2024/05/16 12:01:45 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,8 @@
 #include "B.hpp"
 #include "C.hpp"
 
-Base*	generate()
+Base*	generate(int index)
 {
-	int		index;
-
-	std::srand(static_cast<unsigned int>(time(NULL)));
-	index = std::rand() % 3;
 	switch(index)
 	{
 		case 0: return ((Base *)new A);
@@ -71,7 +67,10 @@ void	identify(Base& p)
 
 int	main()
 {
-	Base* ptr = generate();
+	std::srand(static_cast<unsigned int>(time(NULL)));
+
+	int		index = std::rand() % 3;
+	Base*	ptr = generate(index);
 
 	std::cout << "identify pointer: ";
 	identify(ptr);
