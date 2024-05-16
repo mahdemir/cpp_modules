@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/24 22:44:13 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/25 13:26:43 by mademir       ########   odam.nl         */
+/*   Updated: 2024/05/16 11:58:17 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,13 @@ ScalarConverter&	ScalarConverter::operator = (const ScalarConverter& toCopy)
 static void	toChar(const std::string& format)
 {
 	char	c;
+	double	tmp;
 	int		num;
+
 	try
 	{
-		num = std::stoi(format);
+		tmp = std::stod(format);
+		num = static_cast<int>(std::round(tmp));
 	}
 	catch(const std::exception& e)
 	{
@@ -56,11 +59,13 @@ static void	toChar(const std::string& format)
 
 static void	toInt(const std::string& format)
 {
-	int	num;
+	int		num;
+	double	tmp;
 
 	try
 	{
-		num = static_cast<int>(std::stoi(format));
+		tmp = std::stod(format);
+		num = static_cast<int>(std::round(tmp));
 	}
 	catch(const std::exception& e)
 	{
@@ -97,7 +102,7 @@ static void	toDouble(const std::string& format)
 
 	try
 	{
-		num = static_cast<double>(std::stof(format));
+		num = static_cast<double>(std::stod(format));
 	}
 	catch(const std::exception& e)
 	{
@@ -111,8 +116,13 @@ static void	toDouble(const std::string& format)
 				<< std::endl;
 }
 
-void	ScalarConverter::convert(const std::string& format)
+void	ScalarConverter::convert(std::string& format)
 {
+	if (format.size() == 1)
+	{
+		int num = static_cast<int>(format[0]);
+		format = std::to_string(num);
+	}
 	toChar(format);
 	toInt(format);
 	toFloat(format);

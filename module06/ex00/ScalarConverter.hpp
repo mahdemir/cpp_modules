@@ -6,7 +6,7 @@
 /*   By: mademir <mademir@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/24 22:44:15 by mademir       #+#    #+#                 */
-/*   Updated: 2024/02/25 08:56:40 by mademir       ########   odam.nl         */
+/*   Updated: 2024/05/16 11:38:10 by mademir       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 /******** INCLUDES ************************************************************/
 
 #include <iostream>
-#include <iomanip> // setprecision
+#include <cmath> // round()
+#include <iomanip> // setprecision()
 
 /******** CLASSES *************************************************************/
 
@@ -32,7 +33,7 @@ private:
 	ScalarConverter&	operator = (const ScalarConverter& toCopy);
 
 public:
-	static void			convert(const std::string& format);
+	static void			convert(std::string& format);
 };
 
 #endif // SCALARCONVERTER_HPP
